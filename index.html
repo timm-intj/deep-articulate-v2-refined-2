@@ -320,7 +320,7 @@
      <!-- =========================================================
      SECTION 1: STICKY GLASS COMMAND HEADER
      ========================================================= -->
-<header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
+<header class="fixed w-full top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
   <div class="container-x flex items-center justify-between py-4">
     
     <!-- Brand Identity -->
@@ -382,7 +382,7 @@
 <!-- =========================================================
      SECTION 2: SPLIT-SCREEN WORLD-BUILDING HERO (PRIORITY 1)
      ========================================================= -->
-<section class="relative z-10 pt-14 pb-24 md:py-28 border-b border-white/10 overflow-hidden">
+<section class="relative z-10 pt-28 pb-24 md:pt-36 md:pb-28 border-b border-white/10 overflow-hidden">
   <div class="container-x">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
       
@@ -787,10 +787,10 @@
         <!-- Restructured Interactive Benchmark Switcher -->
         <div class="aura-card p-5">
           <div class="aura-content">
-            <div class="flex items-center justify-between mb-3">
-              <span class="font-mono text-xs text-gold tracking-widest">SPEED VS. STANDARD COMPARISON</span>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
+              <span class="font-mono text-[10px] sm:text-xs text-gold tracking-widest">SPEED VS. STANDARD</span>
               <!-- Unified Pill Toggle -->
-              <div class="flex bg-black/40 border border-white/10 rounded overflow-hidden">
+              <div class="flex bg-black/40 border border-white/10 rounded overflow-hidden shrink-0">
                 <button onclick="setBenchmark('wp')" id="benchWpBtn" class="px-3 py-1.5 text-[10px] font-mono text-silver/70 hover:text-white transition cursor-pointer">Typical Builder</button>
                 <button onclick="setBenchmark('da')" id="benchDaBtn" class="px-3 py-1.5 text-[10px] font-mono bg-gold text-obsidian font-bold transition cursor-pointer shadow-[0_0_10px_rgba(212,175,55,0.4)]">Deep Articulate</button>
               </div>
