@@ -1,0 +1,1634 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Articulate Web Services — Digital Infrastructure Built to Turn Attention Into Customers</title>
+  <meta name="description" content="We design high-performance websites, conversion landing pages, and custom mail infrastructure that help businesses capture enquiries and convert prospective customers." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#070709',
+            charcoal: '#0E0F14',
+            graphite: '#15171E',
+            sapphire: '#0F172A',
+            steel: '#242731',
+            silver: '#EAECEF',
+            muted: '#8E95A5',
+            gold: '#D4AF37',
+            goldlight: '#F3E5AB',
+            goldsoft: '#B8962E',
+            amber: '#F59E0B',
+            emerald: '#10B981'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #070709;
+      --bg-secondary: #0E0F14;
+      --bg-card: rgba(18, 20, 28, 0.78);
+      --text-primary: #EAECEF;
+      --text-muted: #8E95A5;
+      --border-subtle: rgba(212, 175, 55, 0.16);
+      --grid-line: rgba(212, 175, 55, 0.045);
+    }
+
+    /* Optional Architectural Daylight / Alabaster Mode */
+    body.light-mode {
+      --bg-primary: #F8F7F4;
+      --bg-secondary: #EFECE6;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --text-primary: #111318;
+      --text-muted: #525866;
+      --border-subtle: rgba(184, 150, 46, 0.28);
+      --grid-line: rgba(17, 19, 24, 0.05);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    * { box-sizing: border-box; }
+    h1, h2, h3, h4, .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; letter-spacing: -0.01em; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .container-x { max-width: 1240px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+    /* TITAN Vertical Architectural Blueprint Grid */
+    .titan-grid {
+      background-size: 100% 100%, calc(100% / 6) 100%;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.07), transparent 40%),
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
+    }
+
+    /* Outline Display Text (TITAN Inspired) */
+    .text-outline-gold {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(212, 175, 55, 0.55);
+    }
+
+    /* UNDOCK Cursor-Tracking Golden Plasma Card */
+    .aura-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .aura-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(212, 175, 55, 0.16),
+        rgba(245, 158, 11, 0.05) 35%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .aura-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(
+        350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(212, 175, 55, 0.9),
+        rgba(245, 158, 11, 0.25) 45%,
+        transparent 75%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .aura-card:hover::before,
+    .aura-card:hover::after {
+      opacity: 1;
+    }
+    .aura-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px -15px rgba(212, 175, 55, 0.15);
+    }
+    .aura-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Undock Ambient Swirling Plasma Behind Pricing */
+    @keyframes plasma-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.55; }
+      50% { transform: translate(-50%, -50%) scale(1.12) rotate(180deg); opacity: 0.85; }
+    }
+    .undock-plasma-orb {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(212, 175, 55, 0.28) 90deg,
+        rgba(245, 158, 11, 0.35) 180deg,
+        rgba(15, 23, 42, 0.1) 270deg,
+        transparent 360deg
+      );
+      filter: blur(65px);
+      pointer-events: none;
+      z-index: 0;
+      transition: left 0.45s cubic-bezier(0.16, 1, 0.3, 1), top 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: plasma-pulse 14s infinite linear;
+    }
+
+    /* Glowing Pill Box Mechanism */
+    .glowing-pill-wrapper {
+      position: relative;
+      border-radius: 9999px;
+      padding: 1.5px;
+      overflow: hidden;
+      display: inline-flex;
+    }
+    .glowing-pill-wrapper::before {
+      content: "";
+      position: absolute;
+      top: -100%; left: -100%; width: 300%; height: 300%;
+      background: conic-gradient(transparent, transparent, transparent, rgba(212, 175, 55, 0.8), transparent);
+      animation: border-spin 4s linear infinite;
+    }
+    .glowing-pill-inner {
+      position: relative;
+      background: #0E0F14;
+      border-radius: 9999px;
+      padding: 12px 24px;
+      z-index: 1;
+    }
+    body.light-mode .glowing-pill-inner { background: var(--bg-secondary); }
+    @keyframes border-spin { 100% { transform: rotate(360deg); } }
+
+    /* Light Mode Hard-Overrides */
+    body.light-mode .text-white,
+    body.light-mode .text-silver,
+    body.light-mode .text-silver\/70,
+    body.light-mode .text-silver\/75,
+    body.light-mode .text-silver\/80,
+    body.light-mode .text-silver\/85 {
+      color: var(--text-primary) !important;
+    }
+    body.light-mode .bg-charcoal,
+    body.light-mode .bg-obsidian {
+      background-color: var(--bg-secondary) !important;
+    }
+    body.light-mode .bg-black\/40 {
+      background-color: rgba(0,0,0,0.05) !important;
+    }
+
+    /* Buttons */
+    .gold-btn {
+      background: linear-gradient(180deg, #E5C158 0%, #D4AF37 50%, #B8962E 100%);
+      color: #070709;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 15px 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid #E5C158;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.22);
+      cursor: pointer;
+    }
+    .gold-btn:hover {
+      background: linear-gradient(180deg, #F3E5AB 0%, #DFB943 55%, #C6A236 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    }
+
+    .ghost-btn {
+      background: rgba(212, 175, 55, 0.04);
+      color: var(--text-primary);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 14px 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .ghost-btn:hover {
+      border-color: #D4AF37;
+      color: #D4AF37;
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.18);
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #D4AF37;
+    }
+
+    .link-underline { position: relative; }
+    .link-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background: #D4AF37;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .link-underline:hover::after { transform: scaleX(1); }
+
+    /* Floating 3D Mockup Animation */
+    @keyframes float-device {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .floating-device {
+      animation: float-device 6s ease-in-out infinite;
+    }
+
+    /* Animated Data Pulse on Node Connectors */
+    @keyframes pulse-flow {
+      0% { left: 0%; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+    .data-packet {
+      position: absolute;
+      top: -3px;
+      width: 36px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #F3E5AB 0%, #D4AF37 60%, transparent 100%);
+      animation: pulse-flow 3.2s infinite ease-in-out;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #070709; }
+    ::-webkit-scrollbar-thumb { background: #242731; border: 1px solid rgba(212,175,55,0.3); }
+    ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+  </style></head><body class="titan-grid selection:bg-gold selection:text-obsidian"><!-- AMBIENT GOLD EMBER CANVAS --><canvas id="emberCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-60"></canvas><!-- =========================================================
+     SECTION 1: STICKY GLASS COMMAND HEADER
+     ========================================================= --><header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
+  <div class="container-x flex items-center justify-between py-4">
+    
+    <!-- Brand Identity -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="relative flex items-center justify-center">
+        <img src="logo.png" alt="Deep Articulate Logo" class="h-8 md:h-9 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <!-- Fallback Monogram if logo.png is not in current directory -->
+        <div style="display:none;" class="w-9 h-9 rounded-sm border border-gold/60 bg-charcoal items-center justify-center font-serif text-gold font-bold text-lg shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+          DA
+        </div>
+      </div>
+      <div>
+        <span class="font-serif text-xl md:text-2xl tracking-wide text-white block leading-none">Deep Articulate</span>
+        <span class="font-mono text-[9px] tracking-[0.25em] text-gold uppercase block mt-0.5">Web Services</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-silver/80">
+      <a href="#capabilities" class="link-underline hover:text-gold transition-colors">What We Build</a>
+      <a href="#showcase" class="link-underline hover:text-gold transition-colors">Live Work</a>
+      <a href="#architecture" class="link-underline hover:text-gold transition-colors">Systems</a>
+      <a href="#performance" class="link-underline hover:text-gold transition-colors">100/100 Speed</a>
+      <a href="#protocol" class="link-underline hover:text-gold transition-colors">Process</a>
+      <a href="#acquisition" class="link-underline hover:text-gold transition-colors">Pricing</a>
+    </nav>
+
+    <!-- Actions + Atmosphere Toggle -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleAtmosphere()" id="themeToggleBtn" title="Switch Vault / Blueprint Mode" class="w-9 h-9 rounded-sm border border-gold/30 bg-white/5 hover:border-gold flex items-center justify-center text-gold transition cursor-pointer">
+        <span id="themeIcon" class="text-sm">✦</span>
+      </button>
+      <a href="#showcase" class="hidden sm:inline-flex ghost-btn !py-2.5 !px-4 !text-[11px]">View Work</a>
+      <a href="#initiate" class="gold-btn font-mono !py-2.5 !px-4 text-xs">Discuss a Project →</a>
+    </div>
+  </div></header><!-- =========================================================
+     SECTION 2: SPLIT-SCREEN WORLD-BUILDING HERO (PRIORITY 1)
+     ========================================================= --><section class="relative z-10 pt-14 pb-24 md:py-28 border-b border-white/10 overflow-hidden">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+      
+      <!-- Left Column: Immediate Business Clarity (What, Who, Outcome) -->
+      <div class="lg:col-span-7 space-y-7">
+        
+        <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-sm border border-gold/30 bg-gold/5">
+          <span class="w-2 h-2 rounded-full bg-emerald animate-ping"></span>
+          <span class="eyebrow !tracking-[0.2em] text-[10px]">Deep Articulate Web Services · Custom Digital Infrastructure</span>
+        </div>
+
+        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.03] tracking-tight">
+          Digital infrastructure built to turn <em class="text-gold italic font-normal">attention into customers.</em>
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-silver/80 max-w-2xl leading-relaxed font-normal">
+          We design and hand-code high-performance websites, conversion landing pages, and automated mail systems for <strong class="text-white font-medium">home-service contractors, the trades, and growth-focused operators</strong>—helping you communicate your value, capture qualified enquiries, and win more jobs.
+        </p>
+
+        <!-- 3 Explicit Deliverable Pills (Priority 1 Direction) -->
+        <div class="flex flex-wrap gap-2.5 pt-1">
+          <div class="px-3.5 py-2 rounded-sm border border-gold/40 bg-charcoal/90 flex items-center gap-2 text-xs font-mono text-silver">
+            <span class="text-gold">01 //</span> Custom Websites
+          </div>
+          <div class="px-3.5 py-2 rounded-sm border border-gold/40 bg-charcoal/90 flex items-center gap-2 text-xs font-mono text-silver">
+            <span class="text-gold">02 //</span> Conversion Landing Pages
+          </div>
+          <div class="px-3.5 py-2 rounded-sm border border-gold/40 bg-charcoal/90 flex items-center gap-2 text-xs font-mono text-silver">
+            <span class="text-gold">03 //</span> Automated Lead Capture & Mail
+          </div>
+        </div>
+
+        <!-- Dual CTAs: High-Commitment & Low-Commitment (Priority 5) -->
+        <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a href="#acquisition" class="gold-btn font-mono text-xs sm:text-sm uppercase">
+            <span>Start a Project</span>
+            <span>→</span>
+          </a>
+          <a href="#showcase" class="ghost-btn font-mono text-xs">
+            <span>Explore Live Concept Work</span>
+            <span class="text-gold">↓</span>
+          </a>
+          <a href="#initiate" class="text-xs font-mono text-silver/70 hover:text-gold underline underline-offset-4 py-2 text-center sm:ml-2 transition">
+            Or ask a quick question first
+          </a>
+        </div>
+
+        <!-- Bottom Telemetry Bar -->
+        <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg">
+          <div>
+            <div class="font-mono text-xs text-gold font-semibold">100% HAND-CODED</div>
+            <div class="text-xs text-muted mt-0.5">Zero bloated page builders</div>
+          </div>
+          <div>
+            <div class="font-mono text-xs text-emerald font-semibold">&lt; 0.8s LOAD SPEED</div>
+            <div class="text-xs text-muted mt-0.5">Engineered for mobile urgency</div>
+          </div>
+          <div>
+            <div class="font-mono text-xs text-gold font-semibold">OWNED ASSET</div>
+            <div class="text-xs text-muted mt-0.5">Full code & domain control</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Oak Harbor-Inspired 3D Device Showcase with Golden Plasma Glow -->
+      <div class="lg:col-span-5 relative">
+        <!-- Ambient Golden Backlight -->
+        <div class="absolute -inset-6 bg-gradient-to-tr from-gold/25 via-amber/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="floating-device relative z-10">
+          <!-- Laptop Frame -->
+          <div class="aura-card !border-gold/40 rounded-lg p-3 bg-charcoal shadow-2xl">
+            <div class="aura-content">
+              <!-- Browser Top Bar -->
+              <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/10 px-2">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald/80"></span>
+                </div>
+                <div class="bg-obsidian px-3 py-1 rounded text-[10px] font-mono text-silver/70 border border-white/5 flex items-center gap-2">
+                  <span class="text-emerald">🔒</span> silvios-plumbing-austin.concept
+                </div>
+                <span class="font-mono text-[10px] text-gold">LIVE SCHEMATIC</span>
+              </div>
+
+              <!-- Interactive Mini Concept Screen (Silvio's Plumbing Preview) -->
+              <div class="bg-white text-slate-900 rounded overflow-hidden p-4 relative">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded bg-[#0D3B7A] border border-[#C81E1E] text-white font-bold text-[8px] flex items-center justify-center">SP</div>
+                    <div>
+                      <div class="font-sans font-extrabold text-[11px] text-[#0D3B7A] leading-none">Silvio's Plumbing</div>
+                      <div class="text-[8px] text-slate-500">Master Plumber • Austin, TX</div>
+                    </div>
+                  </div>
+                  <span class="bg-[#C81E1E] text-white font-bold text-[9px] px-2.5 py-1 rounded-full">📞 (512) 554-5855</span>
+                </div>
+
+                <div class="grid grid-cols-12 gap-3 items-center">
+                  <div class="col-span-7 space-y-1.5">
+                    <span class="inline-block bg-blue-50 text-[#0D3B7A] text-[8px] font-bold px-2 py-0.5 rounded">Licensed & Insured • Español</span>
+                    <div class="font-sans font-black text-sm text-slate-900 leading-tight">
+                      Quality Plumbing, <span class="italic font-serif text-[#C81E1E] text-base">Done Right</span> the First Time.
+                    </div>
+                    <p class="text-[9px] text-slate-600 leading-relaxed">
+                      45-ft under-slab sewer tunnels, emergency flood response, and turnkey kitchen & bath remodels.
+                    </p>
+                    <div class="flex gap-1.5 pt-1">
+                      <span class="bg-[#0D3B7A] text-white text-[8px] font-bold px-2 py-1 rounded">45ft Sewer Tunnel</span>
+                      <span class="bg-emerald/15 text-emerald-800 text-[8px] font-bold px-2 py-1 rounded">2hr Flood Rescue</span>
+                    </div>
+                  </div>
+
+                  <!-- Mini Interactive Triage Widget Inside Mockup -->
+                  <div class="col-span-5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 space-y-1.5">
+                    <div class="text-[8px] font-bold uppercase text-[#0D3B7A]">Instant Dispatch Triage</div>
+                    <div class="bg-red-50 border border-red-200 text-[#C81E1E] text-[8px] font-bold p-1.5 rounded">🚨 Leak / Flood / Clog</div>
+                    <div class="bg-white border border-slate-200 text-slate-700 text-[8px] p-1.5 rounded">🛠️ Main Sewer Line</div>
+                    <div class="bg-[#C81E1E] text-white text-[8px] font-bold text-center py-1.5 rounded shadow">TEXT FOR ESTIMATE</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overlapping Floating Telemetry Badge (Bottom Left) -->
+          <div class="aura-card !bg-obsidian/95 !border-gold/50 p-3.5 rounded shadow-2xl max-w-[230px] -mt-6 ml-4 relative z-20">
+            <div class="aura-content flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full border-2 border-emerald flex items-center justify-center font-mono text-xs font-bold text-emerald shrink-0">
+                100
+              </div>
+              <div>
+                <div class="font-mono text-[10px] text-gold uppercase tracking-wider">Google PageSpeed</div>
+                <div class="text-xs text-white font-medium">Zero-Bloat Architecture</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div></section><!-- =========================================================
+     SECTION 3: TRANSLATED CAPABILITIES MATRIX (PRIORITY 2 + OAK HARBOR 6-GRID)
+     ========================================================= --><section id="capabilities" class="relative z-10 py-24 md:py-32 bg-charcoal/70 border-b border-white/10">
+  <div class="container-x">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div class="max-w-2xl">
+        <p class="eyebrow mb-4">01 · What We Engineer & Why It Matters</p>
+        <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+          Technical Depth. <em class="text-gold italic font-normal">Translated Into Revenue.</em>
+        </h2>
+      </div>
+      
+      <!-- Animated Glowing Pill -->
+      <div class="glowing-pill-wrapper max-w-md">
+        <div class="glowing-pill-inner">
+          <p class="text-silver/80 text-sm md:text-base leading-relaxed">
+            Every technical system we deploy solves a specific, expensive problem in how your business attracts, filters, and closes customers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6-Card Hover-Illuminated Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_01</span>
+            <span class="font-mono text-xs text-muted">TRAFFIC INGESTION</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">Structured Ad & Search Entry</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Turning clicks from Google & ads into a focused customer journey.</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            Sending paid ads or Google Maps searchers to a cluttered homepage wastes money. We build dedicated entry pages tailored to the exact service the customer just searched for.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">Lower Cost Per Lead</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_02</span>
+            <span class="font-mono text-xs text-muted">PSYCHOLOGICAL CAPTURE</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">Turning Attention Into Action</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Making it effortless for visitors to request a quote or call you.</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            Instead of passive "Contact Us" forms at the bottom of the page, we build interactive triage calculators, clear trust badges, and one-tap SMS/call triggers right at the top.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">2×–3× More Enquiries</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_03</span>
+            <span class="font-mono text-xs text-muted">QUALIFICATION LOGIC</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">Filtering Out Time-Wasters</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Separating serious, high-margin buyers from window shoppers.</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            Our intake flows ask smart, frictionless questions (service type, urgency, property scope) before the lead hits your phone—so you spend time on real jobs, not tire-kickers.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">Higher-Quality Calls</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_04</span>
+            <span class="font-mono text-xs text-muted">AUTOMATED NURTURE</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">24/7 Automated Follow-Up</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Following up automatically with leads who aren't ready to buy today.</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            When you're on a job site or in a meeting, our automated email and confirmation workflows reply instantly, share your credentials, and keep your business top-of-mind.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">Zero Missed Leads</span>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_05</span>
+            <span class="font-mono text-xs text-muted">HAND-CODED VELOCITY</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">Sub-Second Mobile Speed</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Your site loads instantly on 4G/5G before the customer hits "Back".</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            Half of mobile visitors leave if a site takes longer than 3 seconds to load. By writing clean HTML/CSS instead of using heavy WordPress plugins, your page opens in a blink.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">100/100 Speed Score</span>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="aura-card p-8 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[11px] text-gold px-2.5 py-1 bg-gold/10 border border-gold/30">CAPABILITY_06</span>
+            <span class="font-mono text-xs text-muted">DELIVERABILITY DNS</span>
+          </div>
+          <h3 class="font-serif text-3xl text-white mb-2">Inbox Security & Authority</h3>
+          <p class="font-mono text-xs text-gold mb-4">→ What it means: Ensuring your estimates & emails land in the Primary Inbox, never Spam.</p>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            We configure professional custom-domain email (`you@yourcompany.com`) backed by strict SPF, DKIM, and DMARC authentication so every quote you send looks credible and arrives safely.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-muted">
+          <span>OUTCOME</span>
+          <span class="text-emerald">Verified Sender Trust</span>
+        </div>
+      </div>
+
+    </div>
+  </div></section><!-- =========================================================
+     SECTION 4: LIVE CONCEPT & ARCHITECTURE VAULT (PRIORITY 4)
+     ========================================================= --><section id="showcase" class="relative z-10 py-24 md:py-32 border-b border-white/10">
+  <div class="container-x">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <div>
+        <p class="eyebrow mb-4">02 · Demonstrated Capability</p>
+        <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+          Concept & Conversion <em class="text-gold italic font-normal">Blueprints.</em>
+        </h2>
+      </div>
+      <!-- Interactive Filter Tabs -->
+      <div class="flex flex-wrap gap-2">
+        <button onclick="switchConcept(0, this)" class="concept-tab bg-gold text-obsidian font-mono text-xs font-semibold px-4 py-2.5 rounded-sm transition cursor-pointer">
+          01 // Plumbing & Civil Concept
+        </button>
+        <button onclick="switchConcept(1, this)" class="concept-tab bg-charcoal border border-gold/30 text-silver hover:border-gold font-mono text-xs px-4 py-2.5 rounded-sm transition cursor-pointer">
+          02 // HVAC Dispatch Concept
+        </button>
+        <button onclick="switchConcept(2, this)" class="concept-tab bg-charcoal border border-gold/30 text-silver hover:border-gold font-mono text-xs px-4 py-2.5 rounded-sm transition cursor-pointer">
+          03 // Commercial Roofing Concept
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Spotlight Display -->
+    <div class="aura-card p-6 sm:p-10 md:p-12">
+      <div class="aura-content grid lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left: Visual Interactive Mockup Window -->
+        <div class="lg:col-span-7 bg-obsidian border border-gold/30 rounded-md p-4 shadow-2xl">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+            <span id="conceptTag" class="font-mono text-[10px] text-obsidian bg-gold px-2.5 py-0.5 font-bold uppercase">
+              CONCEPT PROJECT · PLUMBING & REMODELING
+            </span>
+            <span id="conceptMetrics" class="font-mono text-xs text-emerald">
+              ⚡ 0.6s Load · Bilingual EN/ES
+            </span>
+          </div>
+
+          <!-- Dynamic Visual Preview Box -->
+          <div id="conceptVisual" class="rounded overflow-hidden bg-gradient-to-br from-slate-900 via-[#0D3B7A] to-obsidian p-6 border border-white/10 min-h-[280px] flex flex-col justify-between transition-all duration-300">
+            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-widest text-amber bg-white/10 px-2.5 py-1 rounded">Austin & Pflugerville Dispatch</span>
+                <h4 class="font-serif text-3xl text-white mt-3">Silvio's Plumbing & Civil Remodels</h4>
+                <p class="text-xs text-silver/80 mt-1 max-w-md">Engineered around the operator's exact service truck livery, featuring a 1-click English/Español toggle and a 3-step emergency leak triage calculator.</p>
+              </div>
+              <span class="font-mono text-xs text-gold border border-gold/40 px-2.5 py-1 shrink-0">6-SECTION ARCHITECTURE</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 pt-4 border-t border-white/15">
+              <div class="bg-black/40 p-3 rounded border border-white/10">
+                <div class="font-mono text-xs text-gold">HERO WIDGET</div>
+                <div class="text-xs text-white mt-0.5">Instant SMS Triage</div>
+              </div>
+              <div class="bg-black/40 p-3 rounded border border-white/10">
+                <div class="font-mono text-xs text-gold">PROOF ENGINE</div>
+                <div class="text-xs text-white mt-0.5">45-Ft Tunnel Case Study</div>
+              </div>
+              <div class="bg-black/40 p-3 rounded border border-white/10">
+                <div class="font-mono text-xs text-gold">MOBILE UX</div>
+                <div class="text-xs text-white mt-0.5">Thumb-Zone Call Bar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Strategic Breakdown -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-gold">
+            <span>◆</span>
+            <span id="conceptType">CONCEPT DEMONSTRATION</span>
+          </div>
+
+          <h3 id="conceptTitle" class="font-serif text-3xl md:text-4xl text-white leading-tight">
+            Turning a Standard Contractor Site Into a 24/7 Dispatch Engine.
+          </h3>
+
+          <p id="conceptSummary" class="text-silver/75 text-sm md:text-base leading-relaxed">
+            Most local plumbing websites bury their best capabilities inside a plain text bullet list. In this concept redesign, we extracted the company's real-world strengths—45-foot under-slab sewer tunneling, full kitchen/bath remodels, and bilingual service—and built an interactive mobile funnel that lets homeowners text a photo of their issue in two taps.
+          </p>
+
+          <ul id="conceptBullets" class="space-y-3 text-sm text-silver/85 pt-2">
+            <li class="flex gap-3"><span class="text-gold font-mono">01</span><span><strong>Brand Continuity:</strong> Matched the exact colors and shield crest from the operator's physical service trucks.</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">02</span><span><strong>Interactive Triage:</strong> Visitors select their plumbing issue to trigger a live diagnostic readout and pre-filled SMS message.</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">03</span><span><strong>Scope Switcher:</strong> Grouped 11 plumbing services + 4 remodeling divisions into clean, zero-clutter tabs.</span></li>
+          </ul>
+
+          <div class="pt-4 flex flex-wrap gap-4">
+            <a href="#initiate" onclick="prefillBrief('I liked the Plumbing/Trades Concept Demo and want something similar')" class="gold-btn font-mono text-xs">
+              Request Similar Architecture →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div></section><!-- =========================================================
+     SECTION 5: THE THESIS & TWO CORE SYSTEMS (RETAINED & TRANSLATED)
+     ========================================================= --><section id="architecture" class="relative z-10 py-24 md:py-32 bg-charcoal/80 border-b border-white/10">
+  <div class="container-x">
+    
+    <!-- Retained Thesis Block + Benchmark Switcher -->
+    <div id="performance" class="grid lg:grid-cols-12 gap-12 items-start pb-24 border-b border-white/10">
+      <div class="lg:col-span-5">
+        <p class="eyebrow mb-5">03 · The Core Philosophy</p>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+          A website is not a brochure. It is an <em class="text-gold italic font-normal">acquisition asset.</em>
+        </h2>
+        <div class="h-px w-20 bg-gold my-6"></div>
+        <p class="text-silver/75 text-base leading-relaxed mb-6">
+          Standard web design treats aesthetics as the final deliverable. A site might look premium, but without fast load times and structural logic to convert traffic, it remains a leak in your pipeline.
+        </p>
+
+        <!-- Restructured Interactive Benchmark Switcher -->
+        <div class="aura-card p-5">
+          <div class="aura-content">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-mono text-xs text-gold tracking-widest">SPEED VS. STANDARD COMPARISON</span>
+              <!-- Unified Pill Toggle -->
+              <div class="flex bg-black/40 border border-white/10 rounded overflow-hidden">
+                <button onclick="setBenchmark('wp')" id="benchWpBtn" class="px-3 py-1.5 text-[10px] font-mono text-silver/70 hover:text-white transition cursor-pointer">Typical Builder</button>
+                <button onclick="setBenchmark('da')" id="benchDaBtn" class="px-3 py-1.5 text-[10px] font-mono bg-gold text-obsidian font-bold transition cursor-pointer shadow-[0_0_10px_rgba(212,175,55,0.4)]">Deep Articulate</button>
+              </div>
+            </div>
+            <div id="benchContent" class="space-y-2.5 text-xs font-mono pt-2">
+              <div class="flex justify-between"><span>Google PageSpeed Score:</span><span class="text-emerald font-bold">98–100 / 100</span></div>
+              <div class="flex justify-between"><span>First Contentful Paint:</span><span class="text-emerald font-bold">0.5 Seconds</span></div>
+              <div class="flex justify-between"><span>Plugin Security Risks:</span><span class="text-gold font-bold">Zero (Static Edge Code)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-6 text-silver/80 text-base md:text-lg leading-relaxed">
+        <p>
+          For any serious operator, a slow or confusing website costs you real jobs every week. Every prospective customer lost to a 4-second mobile load time, vague service descriptions, or a buried phone number is money handed directly to a local competitor.
+        </p>
+        <p>
+          Deep Articulate exists at the intersection of industrial-grade engineering and direct-response conversion. By combining custom-coded speed with clear customer psychology and automated email follow-up, we build assets that command authority and turn visitors into booked work.
+        </p>
+
+        <!-- Kinetic Telemetry Grid -->
+        <div class="grid sm:grid-cols-3 gap-5 pt-4 telemetry-grid">
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <p id="count-98" class="font-serif text-4xl text-gold">0%</p>
+              <p class="text-xs text-silver/65 mt-2 uppercase tracking-wider font-mono">of visitors leave generic sites within 15 seconds without calling</p>
+            </div>
+          </div>
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <p id="count-7" class="font-serif text-4xl text-gold">0×</p>
+              <p class="text-xs text-silver/65 mt-2 uppercase tracking-wider font-mono">higher close rate when instant capture + email follow-up work together</p>
+            </div>
+          </div>
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <p id="count-0" class="font-serif text-4xl text-gold">30</p>
+              <p class="text-xs text-silver/65 mt-2 uppercase tracking-wider font-mono">bloated WordPress templates. Every system is custom-engineered</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Core Systems -->
+    <div class="pt-24">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <p class="eyebrow mb-4">04 · Core Infrastructure</p>
+        <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+          Two Core Systems. <em class="text-gold italic font-normal">One Compounding Engine.</em>
+        </h2>
+        <p class="mt-4 text-silver/70 text-base md:text-lg">
+          Each engagement produces a permanent digital asset—engineered, documented, and owned by your business.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- System I -->
+        <div class="aura-card p-8 md:p-12 flex flex-col justify-between">
+          <div class="aura-content">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <span class="font-mono text-xs text-gold tracking-widest block">SYSTEM_I · WEB ARCHITECTURE</span>
+                <span class="text-xs text-muted font-mono">High-Converting Websites & Landing Pages</span>
+              </div>
+              <svg width="42" height="42" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="6" width="36" height="36" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+                <path d="M14 18 L34 18 M14 24 L28 24 M14 30 L34 30" stroke="#D4AF37" stroke-width="1.2"/>
+                <circle cx="34" cy="34" r="3" fill="#D4AF37"/>
+              </svg>
+            </div>
+            <h3 class="font-serif text-3xl md:text-4xl text-white mb-4">Performance-Driven Funnels</h3>
+            <p class="text-silver/75 leading-relaxed mb-6 text-sm md:text-base">
+              Custom-designed websites and landing pages engineered to turn local searchers into enquiries. Every headline, trust badge, and quote calculator is placed with intent—not decoration.
+            </p>
+            <ul class="space-y-3.5 text-silver/85 text-sm">
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Direct-Response Copy:</strong> Written to answer your customer's biggest questions before they even pick up the phone.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Qualification Logic:</strong> Smart intake steps that filter out window shoppers so you focus on profitable jobs.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Custom-Built Layouts:</strong> Zero generic templates or plagiarized designs—tailored to your brand to convert traffic into calls.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Conversion Tracking:</strong> Clear visibility into how visitors interact with your call buttons and estimate forms.</span></li>
+            </ul>
+          </div>
+          <div class="aura-content mt-10 pt-6 border-t border-white/10 flex items-center justify-between">
+            <span class="font-mono text-xs text-muted">DEPLOYMENT · 48HR TO 5 DAYS</span>
+            <a href="#acquisition" class="link-underline text-gold text-xs font-mono">VIEW TIERS →</a>
+          </div>
+        </div>
+
+        <!-- System II -->
+        <div class="aura-card p-8 md:p-12 flex flex-col justify-between">
+          <div class="aura-content">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <span class="font-mono text-xs text-gold tracking-widest block">SYSTEM_II · COMMUNICATIONS</span>
+                <span class="text-xs text-muted font-mono">Professional Domain Email & Automated Follow-Up</span>
+              </div>
+              <svg width="42" height="42" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12 L42 12 L42 36 L6 36 Z" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+                <path d="M6 12 L24 26 L42 12" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+                <circle cx="38" cy="34" r="2.5" fill="#D4AF37"/>
+              </svg>
+            </div>
+            <h3 class="font-serif text-3xl md:text-4xl text-white mb-4">Custom Mail Systems</h3>
+            <p class="text-silver/75 leading-relaxed mb-6 text-sm md:text-base">
+              Professional email infrastructure and automated follow-up sequences that respond to new enquiries immediately and turn leads into paying clients—without you typing emails at 11pm.
+            </p>
+            <ul class="space-y-3.5 text-silver/85 text-sm">
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Pre-Close Follow-Up Sequences:</strong> Automated replies that share your credentials, reviews, and next steps the moment a customer enquires.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Lead Routing & Alerts:</strong> Instant notifications to your phone or team inbox when a high-priority quote request arrives.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Deliverability Engineering:</strong> Complete SPF, DKIM, and DMARC DNS setup so your emails never land in the spam folder.</span></li>
+              <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Clear Tracking:</strong> Know exactly which leads opened your messages, replied, and booked a call.</span></li>
+            </ul>
+          </div>
+          <div class="aura-content mt-10 pt-6 border-t border-white/10 flex items-center justify-between">
+            <span class="font-mono text-xs text-muted">INTEGRATION · 24–48 HOURS</span>
+            <a href="#acquisition" class="link-underline text-gold text-xs font-mono">CONFIGURE ($30) →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three-Node Circuit Diagram with Animated Data Packets -->
+      <div class="mt-20">
+        <div class="text-center mb-10">
+          <span class="font-mono text-xs text-gold uppercase tracking-widest">Closed-Circuit System Flow</span>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 relative">
+          <!-- Node 1 -->
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <div class="flex justify-between font-mono text-xs mb-3">
+                <span class="text-gold">NODE_01 · INGESTION</span>
+                <span class="text-muted">Visitor Arrives</span>
+              </div>
+              <h4 class="font-serif text-2xl text-white mb-2">1. Targeted Entry</h4>
+              <p class="text-xs text-silver/70 leading-relaxed">Prospects clicking from Google Search, Maps, referrals, or ads land on a fast, mobile-first page built around their exact problem.</p>
+            </div>
+          </div>
+
+          <!-- Animated Connector 1 -->
+          <div class="hidden md:block absolute top-1/2 left-[31%] w-[6%] h-px bg-gold/40 -translate-y-1/2 z-20">
+            <div class="data-packet"></div>
+          </div>
+
+          <!-- Node 2 -->
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <div class="flex justify-between font-mono text-xs mb-3">
+                <span class="text-gold">NODE_02 · CAPTURE</span>
+                <span class="text-muted">Lead Qualifies</span>
+              </div>
+              <h4 class="font-serif text-2xl text-white mb-2">2. Action & Qualification</h4>
+              <p class="text-xs text-silver/70 leading-relaxed">Interactive triage tools and clear trust signals turn visitor attention into a qualified phone call, SMS, or estimate request.</p>
+            </div>
+          </div>
+
+          <!-- Animated Connector 2 -->
+          <div class="hidden md:block absolute top-1/2 left-[64.5%] w-[6%] h-px bg-gold/40 -translate-y-1/2 z-20">
+            <div class="data-packet"></div>
+          </div>
+
+          <!-- Node 3 -->
+          <div class="aura-card p-6">
+            <div class="aura-content">
+              <div class="flex justify-between font-mono text-xs mb-3">
+                <span class="text-gold">NODE_03 · NURTURE</span>
+                <span class="text-muted">Client Closes</span>
+              </div>
+              <h4 class="font-serif text-2xl text-white mb-2">3. Automated Follow-Up</h4>
+              <p class="text-xs text-silver/70 leading-relaxed">Instant email confirmation and follow-up sequences warm the prospect and lock in the job while you focus on operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div></section><!-- =========================================================
+     SECTION 6: 5-STEP DEPLOYMENT PROTOCOL (PRIORITY 4)
+     ========================================================= --><section id="protocol" class="relative z-10 py-24 md:py-32 border-b border-white/10">
+  <div class="container-x">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="eyebrow mb-4">05 · How We Work</p>
+      <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+        From Business Problem to <em class="text-gold italic font-normal">Deployed System.</em>
+      </h2>
+      <p class="mt-4 text-silver/70 text-base md:text-lg">
+        A transparent, 5-stage engineering workflow designed to get your new website live without pulling you away from running your business.
+      </p>
+    </div>
+
+    <!-- 5-Step Interactive Cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+      
+      <div class="aura-card p-6 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="font-mono text-xs text-gold mb-4 flex items-center justify-between">
+            <span>STEP_01</span>
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+          </div>
+          <h3 class="font-serif text-2xl text-white mb-2">Discovery</h3>
+          <p class="text-silver/75 text-xs leading-relaxed">
+            We learn your business model, your highest-margin services, your service areas, and what makes customers choose you over local competitors.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-3 border-t border-white/10 font-mono text-[10px] text-muted">
+          DAY 1 · BRIEFING
+        </div>
+      </div>
+
+      <div class="aura-card p-6 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="font-mono text-xs text-gold mb-4 flex items-center justify-between">
+            <span>STEP_02</span>
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+          </div>
+          <h3 class="font-serif text-2xl text-white mb-2">Strategy</h3>
+          <p class="text-silver/75 text-xs leading-relaxed">
+            We map out the exact page structure, the questions your quote form should ask, and the clearest path to get visitors calling or texting you.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-3 border-t border-white/10 font-mono text-[10px] text-muted">
+          WIREFRAME & FLOW
+        </div>
+      </div>
+
+      <div class="aura-card p-6 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="font-mono text-xs text-gold mb-4 flex items-center justify-between">
+            <span>STEP_03</span>
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+          </div>
+          <h3 class="font-serif text-2xl text-white mb-2">Development</h3>
+          <p class="text-silver/75 text-xs leading-relaxed">
+            We write all customer-facing copy, design a custom visual interface around your brand colors, and hand-code the mobile and desktop experience.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-3 border-t border-white/10 font-mono text-[10px] text-muted">
+          COPY + BESPOKE CODE
+        </div>
+      </div>
+
+      <div class="aura-card p-6 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="font-mono text-xs text-gold mb-4 flex items-center justify-between">
+            <span>STEP_04</span>
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+          </div>
+          <h3 class="font-serif text-2xl text-white mb-2">Deployment</h3>
+          <p class="text-silver/75 text-xs leading-relaxed">
+            We configure your domain DNS, SSL security certificates, edge hosting, and lead-notification routing, then publish the live system.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-3 border-t border-white/10 font-mono text-[10px] text-muted">
+          LIVE TESTING & LAUNCH
+        </div>
+      </div>
+
+      <div class="aura-card p-6 flex flex-col justify-between">
+        <div class="aura-content">
+          <div class="font-mono text-xs text-gold mb-4 flex items-center justify-between">
+            <span>STEP_05</span>
+            <span class="w-2 h-2 rounded-full bg-emerald"></span>
+          </div>
+          <h3 class="font-serif text-2xl text-white mb-2">Handover</h3>
+          <p class="text-silver/75 text-xs leading-relaxed">
+            You receive 100% ownership of your code and domain, a walkthrough of how leads arrive, and optional ongoing maintenance if you want us to manage updates.
+          </p>
+        </div>
+        <div class="aura-content mt-6 pt-3 border-t border-white/10 font-mono text-[10px] text-emerald">
+          100% CLIENT OWNED
+        </div>
+      </div>
+
+    </div>
+  </div></section><!-- =========================================================
+     SECTION 7: UNDOCK GOLDEN-AURA PRICING VAULT (PRIORITY 3)
+     ========================================================= --><section id="acquisition" class="relative z-10 py-24 md:py-32 bg-obsidian border-b border-white/10 overflow-hidden" onmousemove="movePricingOrb(event)">
+  
+  <!-- The Undock Swirling Golden Plasma Orb That Tracks Mouse Across Packages -->
+  <div id="pricingPlasmaOrb" class="undock-plasma-orb" style="left: 50%; top: 48%;"></div>
+
+  <div class="container-x relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="eyebrow mb-4">06 · Transparent Investment Tiers</p>
+      <h2 class="font-serif text-4xl md:text-6xl leading-tight">
+        Simple, Transparent <em class="text-gold italic font-normal">Engagement Tiers.</em>
+      </h2>
+      <p class="mt-4 text-silver/75 text-base md:text-lg">
+        Three clear configurations with upfront pricing. Hover or tap any package to inspect deliverables—or start with a free project discussion below.
+      </p>
+    </div>
+
+    <!-- 3-Column Pricing Grid -->
+    <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+
+      <!-- TIER 1: VIP LAUNCH ($500) -->
+      <div class="aura-card p-8 flex flex-col relative">
+        <span class="absolute top-0 right-6 bg-gold/90 text-obsidian text-[10px] font-mono font-bold tracking-widest px-3 py-1">
+          FASTEST · 24–48HR SPRINT
+        </span>
+        <div class="aura-content flex flex-col h-full">
+          <div class="min-h-[165px] pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-gold tracking-widest">TIER_01</span>
+              <span class="font-mono text-xs text-muted">VIP PRIORITY LAUNCH</span>
+            </div>
+            <h3 class="font-serif text-3xl text-white mb-2">Priority-Queue Landing System</h3>
+            <p class="text-silver/70 text-sm leading-relaxed">
+              For operators launching an urgent ad campaign or seasonal push who need their site engineered and live within 48 hours.
+            </p>
+          </div>
+
+          <div class="my-6 border-y border-white/10 py-5">
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif text-5xl text-gold">$500</span>
+              <span class="text-xs text-muted font-mono">USD · One-Time</span>
+            </div>
+            <p class="text-xs text-gold/90 mt-2 font-mono">Why +$200 vs Standard: Jumps to #1 in our studio queue for 48hr delivery.</p>
+          </div>
+
+          <ul class="space-y-3.5 text-silver/85 mb-8 flex-grow text-sm">
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Everything in Standard ($300) included</strong></span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Dedicated 24–48 Hour Turnaround:</strong> We pause standard queue work to build and launch your page immediately</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Interactive Lead Triage Widget:</strong> Custom calculator or multi-step quote dispatcher built into your hero section</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Same-Day Live Onboarding Call</strong> & priority revision rounds</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span>Optional: $30/mo managed hosting & updates (see scope below)</span></li>
+          </ul>
+
+          <button id="paystack-tier-vip" type="button" class="gold-btn font-mono text-xs w-full uppercase" onclick="window.location.href='https://tally.so/r/eqlyLO'">
+            Book VIP 48-Hr Launch →
+          </button>
+        </div>
+      </div>
+
+      <!-- TIER 2: STANDARD LANDING PAGE ($300 - CENTER HIGHLIGHTED LIKE UNDOCK) -->
+      <div class="aura-card p-8 flex flex-col relative lg:-translate-y-3 shadow-[0_0_50px_rgba(212,175,55,0.18)]" style="border-color: rgba(212,175,55,0.65);">
+        <span class="absolute top-0 right-6 bg-gradient-to-r from-gold to-amber text-obsidian text-[10px] font-mono font-bold tracking-widest px-3.5 py-1">
+          MOST POPULAR
+        </span>
+        <div class="aura-content flex flex-col h-full">
+          <div class="min-h-[165px] pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-gold tracking-widest">TIER_02</span>
+              <span class="font-mono text-xs text-emerald">CORE ARCHITECTURE</span>
+            </div>
+            <h3 class="font-serif text-3xl text-white mb-2">High-Performance Landing Page</h3>
+            <p class="text-silver/70 text-sm leading-relaxed">
+              Our signature custom-coded 6-section conversion website designed to establish authority and turn local traffic into calls.
+            </p>
+          </div>
+
+          <div class="my-6 border-y border-white/10 py-5">
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif text-5xl text-gold">$300</span>
+              <span class="text-xs text-muted font-mono">USD · One-Time</span>
+            </div>
+            <p class="text-xs text-muted mt-2 font-mono">Standard Studio Timeline: 3–5 Business Days</p>
+          </div>
+
+          <ul class="space-y-3.5 text-silver/85 mb-8 flex-grow text-sm">
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Discovery + Strategy Brief:</strong> Full mapping of your services, offers, and local customer pain points</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Complete Direct-Response Copywriting:</strong> We write or polish all headlines, service descriptions, and CTAs</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>100% Custom Visual Build:</strong> Mobile-first HTML/CSS engineered for 98–100 PageSpeed scores</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Direct Call, SMS & Email Quote Integration</strong> + full code ownership</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span>Optional: $30/mo managed hosting & updates (see scope below)</span></li>
+          </ul>
+
+          <button id="paystack-tier-standard" type="button" class="gold-btn font-mono text-xs w-full uppercase" onclick="window.location.href='https://tally.so/r/eqlyLO'">
+            Secure Standard Build ($300) →
+          </button>
+        </div>
+      </div>
+
+      <!-- TIER 3: NEVER-DOWN CONTINUITY ($150 - TECHNICALLY PRECISE PROMISE) -->
+      <div class="aura-card p-8 flex flex-col relative">
+        <span class="absolute top-0 right-6 bg-white/10 text-gold border border-gold/40 text-[10px] font-mono tracking-widest px-3 py-1">
+          CONTINUITY & BACKUP
+        </span>
+        <div class="aura-content flex flex-col h-full">
+          <div class="min-h-[165px] pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-gold tracking-widest">TIER_03</span>
+              <span class="font-mono text-xs text-muted">FAILOVER INFRASTRUCTURE</span>
+            </div>
+            <h3 class="font-serif text-3xl text-white mb-2">Multi-Region Continuity Setup</h3>
+            <p class="text-silver/70 text-sm leading-relaxed">
+              Automated backup hosting and DNS failover protection so an outage at your primary provider never takes your lead funnel offline.
+            </p>
+          </div>
+
+          <div class="my-6 border-y border-white/10 py-5">
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif text-5xl text-gold">$150</span>
+              <span class="text-xs text-muted font-mono">USD · One-Time Setup</span>
+            </div>
+            <p class="text-xs text-muted mt-2 font-mono">Deployment Timeframe: 48–72 Hours</p>
+          </div>
+
+          <ul class="space-y-3.5 text-silver/85 mb-8 flex-grow text-sm">
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Secondary Edge Mirror:</strong> Your site is deployed across two independent global cloud networks simultaneously</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Automated Failover Routing:</strong> If the primary server ever fails a health check, traffic switches to the backup mirror automatically</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>Off-Site Code & Asset Snapshots:</strong> Versioned backups of your entire site</span></li>
+            <li class="flex gap-3"><span class="text-gold font-mono">◆</span><span><strong>99.9%+ High-Availability SLA Architecture</strong> with automated uptime alerts</span></li>
+          </ul>
+
+          <button id="paystack-tier-backup" type="button" class="ghost-btn font-mono text-xs w-full uppercase" onclick="window.location.href='https://tally.so/r/eqlyLO'">
+            Configure Failover Backup →
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Horizontal Add-On Slot: Custom Mail System ($30) -->
+    <div class="mt-8 max-w-6xl mx-auto aura-card p-6 md:p-8 cursor-pointer group" onclick="window.location.href='https://tally.so/r/eqlyLO'">
+      <div class="aura-content flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-mono text-[10px] text-obsidian bg-gold font-bold tracking-widest px-2.5 py-0.5">ADD-ON OR STANDALONE</span>
+            <span class="font-mono text-xs text-gold">COMMUNICATIONS INFRASTRUCTURE</span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl text-white mb-1">Custom Mail System & Automated Lead Reply</h3>
+          <p class="text-silver/75 text-sm leading-relaxed">
+            Professional custom-domain email setup (`info@yourdomain.com`), complete SPF/DKIM/DMARC spam-protection DNS records, and automated instant email replies when a customer requests a quote. <strong>(24–48 Hour Integration)</strong>
+          </p>
+        </div>
+
+        <div class="flex items-center gap-6 md:border-l border-white/10 md:pl-8 shrink-0">
+          <div>
+            <span class="font-serif text-4xl text-gold block leading-none">$30</span>
+            <span class="font-mono text-[10px] text-muted tracking-widest uppercase block mt-1">USD · One-Time Setup</span>
+          </div>
+          <span class="gold-btn !py-3 !px-5 font-mono text-xs">Add System →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority 3 Clarification: What does the Optional $30/mo Hosting & Maintenance Include? -->
+    <div class="mt-6 max-w-6xl mx-auto aura-card p-6">
+      <div class="aura-content">
+        <button type="button" onclick="toggleMaintDetails()" class="w-full flex items-center justify-between text-left cursor-pointer">
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-mono text-sm">ⓘ</span>
+            <span class="font-serif text-xl md:text-2xl text-white">What is included in the optional <span class="text-gold">$30/month</span> Hosting & Maintenance plan?</span>
+          </div>
+          <span id="maintArrow" class="font-mono text-gold text-sm transition-transform">▼ DETAILS</span>
+        </button>
+
+        <div id="maintDetails" class="grid md:grid-cols-3 gap-6 pt-6 mt-5 border-t border-white/10 text-xs sm:text-sm">
+          <div>
+            <div class="font-mono text-xs text-emerald uppercase mb-2">✓ What Is Included Every Month</div>
+            <ul class="space-y-2 text-silver/80">
+              <li>• Global high-speed edge hosting & SSL security renewal</li>
+              <li>• 24/7 uptime monitoring & form/lead delivery checks</li>
+              <li>• <strong>Up to 2 minor content updates per month</strong> (swapping photos, updating pricing, changing phone numbers, or adding a new testimonial)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-mono text-xs text-amber uppercase mb-2">✕ What Is Excluded (Quoted Separately)</div>
+            <ul class="space-y-2 text-silver/80">
+              <li>• Building brand-new pages or additional funnels</li>
+              <li>• Complete visual redesigns or rebranding</li>
+              <li>• Paid advertising management (Google/Meta Ads spend)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-mono text-xs text-gold uppercase mb-2">◆ Do You Have To Pay Monthly?</div>
+            <p class="text-silver/80 leading-relaxed">
+              <strong>No.</strong> You own 100% of your code upon completion. You can host the HTML files yourself for free on your own account, or choose our $30/mo plan if you want us to handle all technical hosting and routine text/photo edits for you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div></section><!-- =========================================================
+     SECTION 8: LOW-FRICTION "DISCUSS A PROJECT" INTAKE (PRIORITY 5)
+     ========================================================= --><section id="initiate" class="relative z-10 py-24 md:py-32 bg-charcoal">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Direct & Reassuring Guidance -->
+      <div class="lg:col-span-5 space-y-6">
+        <p class="eyebrow">07 · Initiate Conversation</p>
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight">
+          Not ready to pick a tier yet? <em class="text-gold italic font-normal">Let’s talk first.</em>
+        </h2>
+        <p class="text-silver/75 text-base leading-relaxed">
+          Tell us a little about your business and what you want to improve. We will review your current setup (or start from scratch) and reply with a clear recommendation—no pressure or long questionnaires required.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <div class="aura-card p-4">
+            <div class="aura-content flex items-center justify-between">
+              <div>
+                <div class="font-mono text-[10px] text-gold uppercase">Direct Studio Email</div>
+                <a href="mailto:info@deeparticulate.me" class="font-mono text-sm text-white hover:text-gold transition">info@deeparticulate.me</a>
+              </div>
+              <span class="text-gold font-mono text-xs">24h Reply</span>
+            </div>
+          </div>
+
+          <div class="aura-card p-4">
+            <div class="aura-content flex items-center justify-between">
+              <div>
+                <div class="font-mono text-[10px] text-gold uppercase">Ready to Start Immediately?</div>
+                <div class="text-xs text-silver/80 mt-0.5">Skipstraight to our structured project intake sheet.</div>
+              </div>
+              <a href="https://tally.so/r/eqlyLO" class="ghost-btn !py-2 !px-3.5 !text-[10px] font-mono">Open Intake Form →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3-Step Frictionless Quick Message Form -->
+      <div class="lg:col-span-7">
+        <form onsubmit="handleQuickInquiry(event)" class="aura-card p-8 md:p-10 space-y-6">
+          <div class="aura-content space-y-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <h3 class="font-serif text-2xl md:text-3xl text-white">Discuss a Project</h3>
+                <p class="text-xs text-muted font-mono mt-0.5">Takes 30 seconds · Direct response from our lead architect</p>
+              </div>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald animate-pulse"></span>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-wider text-silver/80 mb-2">1. Your Name & Business *</label>
+                <input type="text" id="inqName" required placeholder="e.g. John — Apex Plumbing" class="w-full bg-obsidian border border-white/15 focus:border-gold px-4 py-3 text-sm text-white rounded-sm focus:outline-none transition" />
+              </div>
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-wider text-silver/80 mb-2">2. How Should We Reach You? *</label>
+                <input type="text" id="inqContact" required placeholder="Your Email or Phone / WhatsApp #" class="w-full bg-obsidian border border-white/15 focus:border-gold px-4 py-3 text-sm text-white rounded-sm focus:outline-none transition" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-mono text-[11px] uppercase tracking-wider text-silver/80 mb-2">3. What Are You Looking to Build?</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="needPills">
+                <button type="button" onclick="selectNeed(this, 'Standard Landing Page ($300)')" class="need-pill border border-gold bg-gold/15 text-gold font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition">
+                  Landing Page ($300)
+                </button>
+                <button type="button" onclick="selectNeed(this, 'VIP 48-Hr Launch ($500)')" class="need-pill border border-white/15 bg-obsidian text-silver/75 hover:border-gold/50 font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition">
+                  VIP 48hr ($500)
+                </button>
+                <button type="button" onclick="selectNeed(this, 'Custom Mail System ($30)')" class="need-pill border border-white/15 bg-obsidian text-silver/75 hover:border-gold/50 font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition">
+                  Mail System ($30)
+                </button>
+                <button type="button" onclick="selectNeed(this, 'Not Sure Yet — Need Advice')" class="need-pill border border-white/15 bg-obsidian text-silver/75 hover:border-gold/50 font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition">
+                  Need Advice
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-mono text-[11px] uppercase tracking-wider text-silver/80 mb-2">4. Brief Context (Optional Website URL or Goal)</label>
+              <textarea id="inqDetails" rows="3" placeholder="Tell us what your business does and what you want your website to achieve..." class="w-full bg-obsidian border border-white/15 focus:border-gold px-4 py-3 text-sm text-white rounded-sm focus:outline-none transition"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+              <button type="submit" class="gold-btn font-mono text-xs uppercase w-full sm:w-auto">
+                Send Project Enquiry →
+              </button>
+              <span class="font-mono text-[11px] text-muted">Or proceed directly to <a href="https://tally.so/r/eqlyLO" class="text-gold underline">Tally Intake Form</a></span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div></section><!-- =========================================================
+     FOOTER & PAYSTACK COMPLIANCE
+     ========================================================= --><footer class="relative z-10 bg-obsidian border-t border-white/10">
+  <div class="container-x py-12 flex flex-col items-center gap-8">
+    
+    <div class="w-full flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Deep Articulate Logo" class="h-6 md:h-8 w-auto object-contain" onerror="this.style.display='none';" />
+        <span class="font-serif text-base tracking-wide text-silver/85">Deep Articulate Web Services</span>
+      </div>
+      
+      <!-- Compliance Links -->
+      <div class="flex flex-wrap justify-center gap-6 text-xs font-mono tracking-wide text-silver/60">
+        <a href="#capabilities" class="hover:text-gold transition-colors">Capabilities</a>
+        <a href="#showcase" class="hover:text-gold transition-colors">Concept Work</a>
+        <a href="#acquisition" class="hover:text-gold transition-colors">Pricing</a>
+        <a href="/terms.html" class="hover:text-gold transition-colors">Terms of Service</a>
+        <a href="/privacy.html" class="hover:text-gold transition-colors">Privacy Policy</a>
+        <a href="mailto:info@deeparticulate.me" class="hover:text-gold transition-colors">info@deeparticulate.me</a>
+      </div>
+    </div>
+
+    <div class="w-full text-center md:text-left flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-8">
+      <p class="font-mono text-[11px] text-muted tracking-widest">© <span id="year">2026</span> DEEP ARTICULATE WEB SERVICES · ALL SYSTEMS RESERVED</p>
+      <p class="font-mono text-[11px] text-muted tracking-widest mt-4 md:mt-0">LAGOS, NIGERIA · SERVING GLOBAL OPERATORS</p>
+    </div>
+
+  </div></footer><!-- =========================================================
+     INTERACTIVE WORLD-BUILDING SCRIPTS
+     ========================================================= --><script>
+  // 1. Dynamic Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 2. Undock Cursor-Tracking Golden Aura on All .aura-card Elements
+  document.querySelectorAll('.aura-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+
+  // 3. Undock Large Ambient Plasma Orb Tracking Inside Pricing Section
+  function movePricingOrb(e) {
+    const section = document.getElementById('acquisition');
+    const orb = document.getElementById('pricingPlasmaOrb');
+    if (!section || !orb) return;
+    const rect = section.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    orb.style.left = `${x}px`;
+    orb.style.top = `${y}px`;
+  }
+
+  // 4. Interactive Concept Vault Switcher (Priority 4)
+  const concepts = [
+    {
+      tag: "CONCEPT PROJECT · PLUMBING & REMODELING",
+      metrics: "⚡ 0.6s Load · Bilingual EN/ES",
+      bg: "from-slate-900 via-[#0D3B7A] to-obsidian",
+      badge: "Austin & Pflugerville Dispatch",
+      name: "Silvio's Plumbing & Civil Remodels",
+      sub: "Engineered around the operator's exact service truck livery, featuring a 1-click English/Español toggle and a 3-step emergency leak triage calculator.",
+      boxes: [
+        ["HERO WIDGET", "Instant SMS Triage"],
+        ["PROOF ENGINE", "45-Ft Tunnel Case Study"],
+        ["MOBILE UX", "Thumb-Zone Call Bar"]
+      ],
+      title: "Turning a Standard Contractor Site Into a 24/7 Dispatch Engine.",
+      summary: "Most local plumbing websites bury their best capabilities inside a plain text bullet list. In this concept redesign, we extracted the company's real-world strengths—45-foot under-slab sewer tunneling, full kitchen/bath remodels, and bilingual service—and built an interactive mobile funnel that lets homeowners text a photo of their issue in two taps.",
+      bullets: [
+        "<strong>Brand Continuity:</strong> Matched the exact colors and shield crest from the operator's physical service trucks.",
+        "<strong>Interactive Triage:</strong> Visitors select their plumbing issue to trigger a live diagnostic readout and pre-filled SMS message.",
+        "<strong>Scope Switcher:</strong> Grouped 11 plumbing services + 4 remodeling divisions into clean, zero-clutter tabs."
+      ]
+    },
+    {
+      tag: "CONCEPT PROJECT · HVAC & CLIMATE CONTROL",
+      metrics: "⚡ 0.5s Load · Seasonal Funnel",
+      bg: "from-obsidian via-slate-900 to-amber-950/60",
+      badge: "24/7 Emergency AC Repair",
+      name: "Apex Climate & Mechanical Systems",
+      sub: "Built for high-urgency summer AC breakdowns and high-ticket system replacements with transparent financing & diagnostic booking.",
+      boxes: [
+        ["TRIAGE CALCULATOR", "AC Tonnage & Issue Picker"],
+        ["TRUST SIGNAL", "Licensed & Insured Spec Bar"],
+        ["NURTURE FLOW", "Automated Tune-Up Reminders"]
+      ],
+      title: "Capturing High-Ticket HVAC Replacements Before Competitors Reply.",
+      summary: "When an AC unit fails in peak heat, homeowners call the first contractor whose website feels immediate and trustworthy. This concept pairs an instant emergency dispatch header with a clear repair-vs-replace estimator.",
+      bullets: [
+        "<strong>Cortisol-to-Calm UX:</strong> High-contrast emergency call triggers paired with upfront diagnostic pricing.",
+        "<strong>Qualification Filtering:</strong> Separates routine filter maintenance from full $8,000+ system installations.",
+        "<strong>Automated Email Follow-Up:</strong> Sends financing options and warranty specs automatically after enquiry."
+      ]
+    },
+    {
+      tag: "CONCEPT PROJECT · COMMERCIAL & RESIDENTIAL ROOFING",
+      metrics: "⚡ 0.6s Load · Storm Inspection Flow",
+      bg: "from-obsidian via-neutral-900 to-yellow-950/50",
+      badge: "Hail & Storm Damage Specialists",
+      name: "Vanguard Roofing & Exterior Restoration",
+      sub: "High-authority architectural showcase designed to book free drone roof inspections and commercial flat-roof estimates.",
+      boxes: [
+        ["INSPECTION FUNNEL", "ZIP-Code Storm Qualifier"],
+        ["VISUAL PROOF", "Interactive Material Explorer"],
+        ["B2B & RESIDENTIAL", "Dual Property Routing"]
+      ],
+      title: "High-Trust Digital Architecture for High-Ticket Roofing Contracts.",
+      summary: "Roofing is a high-trust, high-ticket purchase. We engineered this concept to showcase material certifications, insurance claim guidance, and a frictionless 30-second inspection booking flow.",
+      bullets: [
+        "<strong>Material & Warranty Explorer:</strong> Interactive tabs comparing architectural shingles, metal, and commercial TPO.",
+        "<strong>Insurance Claim Clarity:</strong> Step-by-step visual guide that builds homeowner confidence before the first call.",
+        "<strong>Lead Routing:</strong> Automatically tags residential repairs vs. commercial replacements."
+      ]
+    }
+  ];
+
+  function switchConcept(idx, btn) {
+    document.querySelectorAll('.concept-tab').forEach(t => {
+      t.className = "concept-tab bg-charcoal border border-gold/30 text-silver hover:border-gold font-mono text-xs px-4 py-2.5 rounded-sm transition cursor-pointer";
+    });
+    btn.className = "concept-tab bg-gold text-obsidian font-mono text-xs font-semibold px-4 py-2.5 rounded-sm transition cursor-pointer";
+
+    const c = concepts[idx];
+    document.getElementById('conceptTag').textContent = c.tag;
+    document.getElementById('conceptMetrics').textContent = c.metrics;
+    const vis = document.getElementById('conceptVisual');
+    vis.className = `rounded overflow-hidden bg-gradient-to-br ${c.bg} p-6 border border-white/10 min-h-[280px] flex flex-col justify-between transition-all duration-300`;
+    vis.innerHTML = `
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-gold bg-white/10 px-2.5 py-1 rounded">${c.badge}</span>
+          <h4 class="font-serif text-3xl text-white mt-3">${c.name}</h4>
+          <p class="text-xs text-silver/80 mt-1 max-w-md">${c.sub}</p>
+        </div>
+        <span class="font-mono text-xs text-gold border border-gold/40 px-2.5 py-1 shrink-0">6-SECTION ARCHITECTURE</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 pt-4 border-t border-white/15">
+        ${c.boxes.map(b => `
+          <div class="bg-black/40 p-3 rounded border border-white/10">
+            <div class="font-mono text-xs text-gold">${b[0]}</div>
+            <div class="text-xs text-white mt-0.5">${b[1]}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    document.getElementById('conceptTitle').textContent = c.title;
+    document.getElementById('conceptSummary').textContent = c.summary;
+    document.getElementById('conceptBullets').innerHTML = c.bullets.map((b, i) => `
+      <li class="flex gap-3"><span class="text-gold font-mono">0${i+1}</span><span>${b}</span></li>
+    `).join('');
+  }
+
+  // 5. Updated Benchmark Switcher JS
+  function setBenchmark(mode) {
+    const daBtn = document.getElementById('benchDaBtn');
+    const wpBtn = document.getElementById('benchWpBtn');
+    const box = document.getElementById('benchContent');
+    if (mode === 'da') {
+      daBtn.className = "px-3 py-1.5 text-[10px] font-mono bg-gold text-obsidian font-bold transition cursor-pointer shadow-[0_0_10px_rgba(212,175,55,0.4)]";
+      wpBtn.className = "px-3 py-1.5 text-[10px] font-mono text-silver/70 hover:text-white transition cursor-pointer";
+      box.innerHTML = `
+        <div class="flex justify-between"><span>Google PageSpeed Score:</span><span class="text-emerald font-bold">98–100 / 100</span></div>
+        <div class="flex justify-between"><span>First Contentful Paint:</span><span class="text-emerald font-bold">0.5 Seconds</span></div>
+        <div class="flex justify-between"><span>Plugin Security Risks:</span><span class="text-gold font-bold">Zero (Static Edge Code)</span></div>
+      `;
+    } else {
+      wpBtn.className = "px-3 py-1.5 text-[10px] font-mono bg-red-500 text-white font-bold transition cursor-pointer shadow-[0_0_10px_rgba(239,68,68,0.4)]";
+      daBtn.className = "px-3 py-1.5 text-[10px] font-mono text-silver/70 hover:text-white transition cursor-pointer";
+      box.innerHTML = `
+        <div class="flex justify-between"><span>Google PageSpeed Score:</span><span class="text-red-400 font-bold">42–65 / 100</span></div>
+        <div class="flex justify-between"><span>First Contentful Paint:</span><span class="text-red-400 font-bold">3.8+ Seconds (High Bounce)</span></div>
+        <div class="flex justify-between"><span>Plugin Security Risks:</span><span class="text-red-400 font-bold">20+ Third-Party Scripts</span></div>
+      `;
+    }
+  }
+
+  // 6. Telemetry Kinetic Counters (98 up, 7 up, 30 down to 0)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter('count-98', 0, 98, 1600, '%');
+        animateCounter('count-7', 0, 7, 1600, '×');
+        animateCounter('count-0', 30, 0, 1600, '');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.telemetry-grid').forEach(el => observer.observe(el));
+
+  function animateCounter(id, start, end, duration, suffix) {
+    const obj = document.getElementById(id);
+    if (!obj) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4); // Smooth deceleration
+      const current = Math.floor(ease * (end - start) + start);
+      obj.innerHTML = current + suffix;
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // 7. Toggle $30/mo Maintenance Details
+  function toggleMaintDetails() {
+    const el = document.getElementById('maintDetails');
+    const arrow = document.getElementById('maintArrow');
+    if (el.style.display === 'none') {
+      el.style.display = 'grid';
+      arrow.textContent = '▼ HIDE DETAILS';
+    } else {
+      el.style.display = 'none';
+      arrow.textContent = '▶ VIEW SCOPE';
+    }
+  }
+
+  // 8. Low-Friction Inquiry Form Logic
+  let selectedNeedValue = 'Standard Landing Page ($300)';
+  function selectNeed(btn, val) {
+    selectedNeedValue = val;
+    document.querySelectorAll('.need-pill').forEach(p => {
+      p.className = "need-pill border border-white/15 bg-obsidian text-silver/75 hover:border-gold/50 font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition";
+    });
+    btn.className = "need-pill border border-gold bg-gold/15 text-gold font-mono text-xs py-2.5 px-3 rounded-sm text-center cursor-pointer transition";
+  }
+
+  function prefillBrief(text) {
+    const details = document.getElementById('inqDetails');
+    if (details) details.value = text;
+  }
+
+  function handleQuickInquiry(e) {
+    e.preventDefault();
+    const name = document.getElementById('inqName').value;
+    const contact = document.getElementById('inqContact').value;
+    const details = document.getElementById('inqDetails').value || 'No extra details provided.';
+    const subject = `Project Enquiry from ${name} (${selectedNeedValue})`;
+    const body = `Name / Business: ${name}\nContact: ${contact}\nInterested In: ${selectedNeedValue}\n\nProject Context:\n${details}`;
+    window.location.href = `mailto:info@deeparticulate.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  // 9. Obsidian Vault / Architectural Alabaster Theme Switcher
+  function toggleAtmosphere() {
+    document.body.classList.toggle('light-mode');
+    const icon = document.getElementById('themeIcon');
+    icon.textContent = document.body.classList.contains('light-mode') ? '☾' : '✦';
+  }
+
+  // 10. Ambient Drifting Gold Ember Canvas
+  const canvas = document.getElementById('emberCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  for (let i = 0; i < 38; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.6 + 0.4,
+      dx: (Math.random() - 0.5) * 0.25,
+      dy: -Math.random() * 0.35 - 0.1,
+      alpha: Math.random() * 0.55 + 0.15
+    });
+  }
+
+  function animateEmbers() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+    });
+    requestAnimationFrame(animateEmbers);
+  }
+  animateEmbers();</script></body></html>
