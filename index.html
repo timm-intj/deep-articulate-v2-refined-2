@@ -199,45 +199,109 @@
     body.light-mode .glowing-pill-inner { background: var(--bg-secondary); }
     @keyframes border-spin { 100% { transform: rotate(360deg); } }
 
-   /* Light Mode Hard-Overrides (Enhanced for Opacity & Gradients) */
-    body.light-mode .text-white,
-    body.light-mode .text-silver,
-    body.light-mode .text-silver\/60,
-    body.light-mode .text-silver\/65,
-    body.light-mode .text-silver\/70,
-    body.light-mode .text-silver\/75,
-    body.light-mode .text-silver\/80,
-    body.light-mode .text-silver\/85 {
-      color: var(--text-primary) !important;
+   /* =========================================================
+       LIGHT MODE: ARCHITECTURAL LUXURY PALETTE (100% CSS OVERRIDE)
+       ========================================================= */
+
+    /* 1. GLOBAL LIGHT BASE (Hero, Concepts, Process) */
+    body.light-mode {
+      background-color: #FAF8F5 !important; /* Warm Ivory Base */
+    }
+
+    /* Flip all default white/silver text to Warm Charcoal */
+    body.light-mode [class*="text-white"],
+    body.light-mode [class*="text-silver"] {
+      color: #1E1E1C !important; 
+    }
+
+    /* Flip all default dark backgrounds to Ivory */
+    body.light-mode [class*="bg-charcoal"],
+    body.light-mode [class*="bg-obsidian"] {
+      background-color: #FAF8F5 !important;
+    }
+
+    /* Flip all white borders to faint charcoal */
+    body.light-mode [class*="border-white"] {
+      border-color: rgba(30, 30, 28, 0.1) !important;
+    }
+
+
+    /* 2. PROTECT THE COMMAND HEADER (Keep it Dark Glass) */
+    body.light-mode header [class*="text-white"],
+    body.light-mode header [class*="text-silver"] {
+      color: #ffffff !important;
+    }
+    body.light-mode header [class*="border-white"] {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    body.light-mode header .bg-black\/90,
+    body.light-mode header .bg-charcoal\/90 {
+      background-color: rgba(0, 0, 0, 0.9) !important;
+    }
+
+
+    /* 3. ALTERNATING ZEBRA SECTIONS (Deep Forest Green) */
+    /* Target: Capabilities (Sec 1), Performance (Sec 3), Pricing (Sec 6) */
+    body.light-mode #capabilities,
+    body.light-mode #performance,
+    body.light-mode #acquisition {
+      background-color: #0D1F18 !important; /* Deep Forest Green */
+    }
+
+    /* Protect text inside Forest Green sections -> Force to Ivory */
+    body.light-mode #capabilities [class*="text-white"],
+    body.light-mode #capabilities [class*="text-silver"],
+    body.light-mode #performance [class*="text-white"],
+    body.light-mode #performance [class*="text-silver"],
+    body.light-mode #acquisition [class*="text-white"],
+    body.light-mode #acquisition [class*="text-silver"] {
+      color: #FAF8F5 !important;
+    }
+
+    /* Darken inner UI cards inside Forest Green sections */
+    body.light-mode #capabilities [class*="bg-charcoal"],
+    body.light-mode #performance [class*="bg-charcoal"],
+    body.light-mode #acquisition [class*="bg-charcoal"] {
+      background-color: #11241E !important; 
+    }
+
+    /* Restore borders inside Forest Green sections to faint Ivory */
+    body.light-mode #capabilities [class*="border-white"],
+    body.light-mode #performance [class*="border-white"],
+    body.light-mode #acquisition [class*="border-white"] {
+      border-color: rgba(250, 248, 245, 0.1) !important;
+    }
+
+
+    /* 4. THE INTAKE FORM (Pure White & Muted Sage) */
+    body.light-mode #initiate {
+      background-color: #ffffff !important;
+    }
+    body.light-mode #initiate [class*="bg-charcoal"] {
+      background-color: #ffffff !important;
+      border-color: #D8E2DC !important; /* Muted Sage border for form fields */
+    }
+
+
+    /* 5. ACCENTS & BRANDING FIXES */
+    /* Convert Emerald text to Terracotta in Light Mode */
+    body.light-mode .text-emerald {
+      color: #C86D51 !important; 
     }
     
-    /* Force all charcoal/obsidian backgrounds (including opacity variants) to Alabaster */
-    body.light-mode .bg-charcoal,
-    body.light-mode .bg-charcoal\/70,
-    body.light-mode .bg-charcoal\/80,
-    body.light-mode .bg-charcoal\/90,
-    body.light-mode .bg-obsidian,
-    body.light-mode .bg-obsidian\/85,
-    body.light-mode .bg-obsidian\/95 {
-      background-color: var(--bg-secondary) !important;
-    }
-
-    /* Override the dark Concept Vault gradients to a clean light aesthetic */
-    body.light-mode .bg-gradient-to-br {
-      background: linear-gradient(135deg, #ffffff, #EFECE6) !important;
-    }
-
-    /* Fix the inner transparent boxes (Nodes, Concept Metrics) */
-    body.light-mode .bg-black\/40 {
-      background-color: rgba(255, 255, 255, 0.75) !important;
-      border-color: rgba(184, 150, 46, 0.3) !important;
-    }
-
-    /* Deepen the gold slightly in light mode for better reading contrast */
+    /* Deepen Gold for light mode legibility */
     body.light-mode .text-gold {
       color: #9C7D22 !important;
     }
 
+    /* Clean up the Concept Vault gradients and inner pills */
+    body.light-mode .bg-gradient-to-br {
+      background: linear-gradient(135deg, #ffffff, #F4F1EA) !important;
+    }
+    body.light-mode .bg-black\/40 {
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      border-color: rgba(184, 150, 46, 0.3) !important;
+    }
     /* Buttons */
     .gold-btn {
       background: linear-gradient(180deg, #E5C158 0%, #D4AF37 50%, #B8962E 100%);
