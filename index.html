@@ -199,108 +199,104 @@
     body.light-mode .glowing-pill-inner { background: var(--bg-secondary); }
     @keyframes border-spin { 100% { transform: rotate(360deg); } }
 
-   /* =========================================================
-       LIGHT MODE: ARCHITECTURAL LUXURY PALETTE (100% CSS OVERRIDE)
+  /* =========================================================
+       LIGHT MODE: MIDNIGHT NAVY & CRISP WHITE (100% CSS OVERRIDE)
        ========================================================= */
 
-    /* 1. GLOBAL LIGHT BASE (Hero, Concepts, Process) */
+    /* 1. GLOBAL LIGHT BASE (Crisp Architectural White, No Ash) */
     body.light-mode {
-      background-color: #FAF8F5 !important; /* Warm Ivory Base */
+      background-color: #F8F9FA !important; 
     }
 
-    /* Flip all default white/silver text to Warm Charcoal */
-    body.light-mode [class*="text-white"],
-    body.light-mode [class*="text-silver"] {
-      color: #1E1E1C !important; 
+    /* Force all text to Deep Charcoal globally (outside of Navy sections) */
+    body.light-mode h1, body.light-mode h2, body.light-mode h3, 
+    body.light-mode p, body.light-mode li, body.light-mode span,
+    body.light-mode div {
+      color: #111827; 
     }
 
-    /* Flip all default dark backgrounds to Ivory */
+    /* Flip global dark card backgrounds to pure white */
     body.light-mode [class*="bg-charcoal"],
     body.light-mode [class*="bg-obsidian"] {
-      background-color: #FAF8F5 !important;
+      background-color: #FFFFFF !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
     }
 
-    /* Flip all white borders to faint charcoal */
-    body.light-mode [class*="border-white"] {
-      border-color: rgba(30, 30, 28, 0.1) !important;
+    /* 1b. FIX THE GRID & SPARKLES */
+    /* Invert the grid lines so they show up on the white background */
+    body.light-mode.titan-grid {
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px) !important;
     }
-
+    /* Force the gold particles to pop against white */
+    body.light-mode #emberCanvas {
+      opacity: 1 !important;
+      filter: drop-shadow(0px 1px 2px rgba(156, 125, 34, 0.6)) brightness(0.85) !important;
+    }
 
     /* 2. PROTECT THE COMMAND HEADER (Keep it Dark Glass) */
-    body.light-mode header [class*="text-white"],
-    body.light-mode header [class*="text-silver"] {
+    body.light-mode header *,
+    body.light-mode header a {
       color: #ffffff !important;
     }
-    body.light-mode header [class*="border-white"] {
-      border-color: rgba(255, 255, 255, 0.1) !important;
+    body.light-mode header .text-gold {
+      color: #D4AF37 !important;
     }
-    body.light-mode header .bg-black\/90,
-    body.light-mode header .bg-charcoal\/90 {
-      background-color: rgba(0, 0, 0, 0.9) !important;
+    body.light-mode header .bg-black\/90 {
+      background-color: rgba(7, 7, 9, 0.9) !important;
     }
 
-
-    /* 3. ALTERNATING ZEBRA SECTIONS (Deep Forest Green) */
+    /* 3. ALTERNATING ZEBRA SECTIONS (Midnight Navy) */
     /* Target: Capabilities (Sec 1), Performance (Sec 3), Pricing (Sec 6) */
     body.light-mode #capabilities,
     body.light-mode #performance,
     body.light-mode #acquisition {
-      background-color: #0D1F18 !important; /* Deep Forest Green */
+      background-color: #0A1128 !important; /* Midnight Navy */
     }
 
-    /* Protect text inside Forest Green sections -> Force to Ivory */
-    body.light-mode #capabilities [class*="text-white"],
-    body.light-mode #capabilities [class*="text-silver"],
-    body.light-mode #performance [class*="text-white"],
-    body.light-mode #performance [class*="text-silver"],
-    body.light-mode #acquisition [class*="text-white"],
-    body.light-mode #acquisition [class*="text-silver"] {
-      color: #FAF8F5 !important;
+    /* STRICT OVERRIDE: Force ALL text inside Navy sections to White */
+    body.light-mode #capabilities h2, body.light-mode #capabilities p, body.light-mode #capabilities span, body.light-mode #capabilities div, body.light-mode #capabilities li,
+    body.light-mode #performance h2, body.light-mode #performance p, body.light-mode #performance span, body.light-mode #performance div, body.light-mode #performance li,
+    body.light-mode #acquisition h2, body.light-mode #acquisition p, body.light-mode #acquisition span, body.light-mode #acquisition div, body.light-mode #acquisition li {
+      color: #ffffff !important;
     }
 
-    /* Darken inner UI cards inside Forest Green sections */
+    /* Inner UI cards inside Navy sections (Slightly lighter Navy for contrast) */
     body.light-mode #capabilities [class*="bg-charcoal"],
     body.light-mode #performance [class*="bg-charcoal"],
     body.light-mode #acquisition [class*="bg-charcoal"] {
-      background-color: #11241E !important; 
+      background-color: #111A3A !important; 
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      box-shadow: none;
     }
 
-    /* Restore borders inside Forest Green sections to faint Ivory */
-    body.light-mode #capabilities [class*="border-white"],
-    body.light-mode #performance [class*="border-white"],
-    body.light-mode #acquisition [class*="border-white"] {
-      border-color: rgba(250, 248, 245, 0.1) !important;
+    /* 4. PROTECT ACCENTS GLOBALLY */
+    /* Ensure Gold text stays Gold everywhere */
+    body.light-mode .text-gold, 
+    body.light-mode #capabilities .text-gold, 
+    body.light-mode #performance .text-gold, 
+    body.light-mode #acquisition .text-gold {
+      color: #B8962E !important; /* Slightly deeper gold for legibility on white */
     }
-
-
-    /* 4. THE INTAKE FORM (Pure White & Muted Sage) */
-    body.light-mode #initiate {
-      background-color: #ffffff !important;
-    }
-    body.light-mode #initiate [class*="bg-charcoal"] {
-      background-color: #ffffff !important;
-      border-color: #D8E2DC !important; /* Muted Sage border for form fields */
-    }
-
-
-    /* 5. ACCENTS & BRANDING FIXES */
     /* Convert Emerald text to Terracotta in Light Mode */
     body.light-mode .text-emerald {
       color: #C86D51 !important; 
     }
-    
-    /* Deepen Gold for light mode legibility */
-    body.light-mode .text-gold {
-      color: #9C7D22 !important;
-    }
 
-    /* Clean up the Concept Vault gradients and inner pills */
+    /* 5. CONCEPT VAULT GRADIENTS & PILLS */
     body.light-mode .bg-gradient-to-br {
-      background: linear-gradient(135deg, #ffffff, #F4F1EA) !important;
+      background: linear-gradient(135deg, #ffffff, #F0F2F5) !important;
     }
     body.light-mode .bg-black\/40 {
-      background-color: rgba(255, 255, 255, 0.75) !important;
-      border-color: rgba(184, 150, 46, 0.3) !important;
+      background-color: rgba(0, 0, 0, 0.04) !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    
+    /* 6. INTAKE FORM / FOOTER */
+    body.light-mode #initiate {
+      background-color: #ffffff !important;
     }
     /* Buttons */
     .gold-btn {
