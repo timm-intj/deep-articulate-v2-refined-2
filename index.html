@@ -317,78 +317,72 @@
     ::-webkit-scrollbar-thumb { background: #242731; border: 1px solid rgba(212,175,55,0.3); }
     ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
   </style></head><body class="titan-grid selection:bg-gold selection:text-obsidian"><!-- AMBIENT GOLD EMBER CANVAS --><canvas id="emberCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-60"></canvas><!-- =========================================================
+     <!-- =========================================================
      SECTION 1: STICKY GLASS COMMAND HEADER
-     ========================================================= --><header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
+     ========================================================= -->
+<header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
   <div class="container-x flex items-center justify-between py-4">
     
     <!-- Brand Identity -->
-    <a href="#" class="flex items-center gap-3 group">
+    <a href="#" class="flex items-center gap-3 group shrink-0">
       <div class="relative flex items-center justify-center">
         <img src="logo.png" alt="Deep Articulate Logo" class="h-8 md:h-9 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <!-- Fallback Monogram if logo.png is not in current directory -->
-        <div style="display:none;" class="w-9 h-9 rounded-sm border border-gold/60 bg-charcoal items-center justify-center font-serif text-gold font-bold text-lg shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-          DA
-        </div>
+        <!-- Fallback Monogram -->
+        <div style="display:none;" class="w-9 h-9 rounded-sm border border-gold/60 bg-charcoal items-center justify-center font-serif text-gold font-bold text-lg shadow-[0_0_15px_rgba(212,175,55,0.2)]">DA</div>
       </div>
       <div>
-        <span class="font-serif text-xl md:text-2xl tracking-wide text-white block leading-none">Deep Articulate</span>
-        <span class="font-mono text-[9px] tracking-[0.25em] text-gold uppercase block mt-0.5">Web Services</span>
+        <span class="font-serif text-xl md:text-2xl tracking-wide text-white block leading-none whitespace-nowrap">Deep Articulate</span>
+        <span class="font-mono text-[9px] tracking-[0.25em] text-gold uppercase block mt-0.5 whitespace-nowrap">Web Services</span>
       </div>
     </a>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-silver/80">
-      <a href="#capabilities" class="link-underline hover:text-gold transition-colors">Capabilities</a>
-      <a href="#showcase" class="link-underline hover:text-gold transition-colors">Concept Work</a>
-      <a href="#architecture" class="link-underline hover:text-gold transition-colors">Core Systems</a>
-      <a href="#performance" class="link-underline hover:text-gold transition-colors">Performance</a>
-      <a href="#protocol" class="link-underline hover:text-gold transition-colors">Our Process</a>
-      <a href="#acquisition" class="link-underline hover:text-gold transition-colors">Pricing</a>
+    <!-- Desktop Navigation (Fixed Spacing & Wrapping) -->
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs font-mono uppercase tracking-wider text-silver/80">
+      <a href="#capabilities" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Capabilities</a>
+      <a href="#showcase" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Concept Work</a>
+      <a href="#performance" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Performance</a>
+      <a href="#architecture" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Core Infrastructure</a>
+      <a href="#protocol" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Our Process</a>
+      <a href="#acquisition" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Pricing</a>
     </nav>
 
-    <!-- Actions + Atmosphere Toggle -->
-    <div class="flex items-center gap-3">
+    <!-- Actions + Atmosphere Toggle + Mobile Hamburger -->
+    <div class="flex items-center gap-3 shrink-0">
       <button onclick="toggleAtmosphere()" id="themeToggleBtn" title="Switch Vault / Blueprint Mode" class="w-9 h-9 rounded-sm border border-gold/30 bg-white/5 hover:border-gold flex items-center justify-center text-gold transition cursor-pointer">
         <span id="themeIcon" class="text-sm">✦</span>
       </button>
-      <a href="#showcase" class="hidden sm:inline-flex ghost-btn !py-2.5 !px-4 !text-[11px]">View Work</a>
-      <a href="#initiate" class="gold-btn font-mono !py-2.5 !px-4 text-xs">Discuss a Project →</a>
+      
+      <a href="#showcase" class="hidden md:inline-flex ghost-btn !py-2.5 !px-4 !text-[11px] whitespace-nowrap">View Work</a>
+      <a href="#initiate" class="hidden sm:inline-flex gold-btn font-mono !py-2.5 !px-4 text-xs whitespace-nowrap">Discuss a Project →</a>
+      
+      <!-- Mobile Menu Trigger -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden w-9 h-9 flex items-center justify-center text-gold border border-gold/30 rounded-sm bg-white/5 hover:border-gold transition cursor-pointer">
+        <svg id="hamburgerIcon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
     </div>
-  </div></header><!-- =========================================================
-    <!-- =========================================================
-     MOBILE LEFT-SIDE GLASS NAVIGATION
-     ========================================================= -->
-<div class="fixed left-0 top-1/3 z-[60] lg:hidden flex flex-col items-start pointer-events-none">
-  <!-- Smoked glass effect: highly transparent, blurs background, safe for text overlap -->
-  <nav class="pointer-events-auto backdrop-blur-xl border-y border-r border-white/10 rounded-r-lg p-3 flex flex-col gap-4 shadow-2xl transition-all" style="background-color: rgba(0, 0, 0, 0.25);">
-    <a href="#capabilities" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">01</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Capabilities</span>
-    </a>
-    <a href="#showcase" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">02</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Concepts</span>
-    </a>
-    <a href="#architecture" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">03</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Systems</span>
-    </a>
-    <a href="#performance" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">04</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Performance</span>
-    </a>
-    <a href="#protocol" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">05</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Process</span>
-    </a>
-    <a href="#acquisition" class="flex items-center gap-2.5 group">
-      <span class="font-mono text-[9px] text-gold">06</span>
-      <span class="font-mono text-[9px] text-white/70 uppercase tracking-wider group-hover:text-gold transition">Pricing</span>
-    </a>
-  </nav>
-</div>
+  </div>
+
+  <!-- Collapsible Mobile Glass Menu -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 backdrop-blur-2xl bg-obsidian/95 absolute w-full shadow-2xl origin-top transition-all">
+    <nav class="flex flex-col p-5 gap-5">
+      <a href="#capabilities" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">01</span> Capabilities</a>
+      <a href="#showcase" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">02</span> Concept Work</a>
+      <a href="#performance" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">03</span> Performance</a>
+      <a href="#architecture" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">04</span> Core Infrastructure</a>
+      <a href="#protocol" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">05</span> Our Process</a>
+      <a href="#acquisition" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">06</span> Pricing</a>
+      
+      <div class="pt-4 border-t border-white/10 mt-2">
+        <a href="#initiate" onclick="toggleMobileMenu()" class="gold-btn font-mono w-full !py-3 text-xs justify-center uppercase">Discuss a Project →</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- =========================================================
      SECTION 2: SPLIT-SCREEN WORLD-BUILDING HERO (PRIORITY 1)
-     ========================================================= --><section class="relative z-10 pt-14 pb-24 md:py-28 border-b border-white/10 overflow-hidden">
+     ========================================================= -->
+<section class="relative z-10 pt-14 pb-24 md:py-28 border-b border-white/10 overflow-hidden">
   <div class="container-x">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
       
@@ -1617,7 +1611,27 @@
     const body = `Name / Business: ${name}\nContact: ${contact}\nInterested In: ${selectedNeedValue}\n\nProject Context:\n${details}`;
     window.location.href = `mailto:info@deeparticulate.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
+// Mobile Collapsible Glass Menu Logic
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('hamburgerIcon');
+    if (!menu || !icon) return;
+    
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden');
+      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; // Morph to X
+    } else {
+      menu.classList.add('hidden');
+      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Morph to Hamburger
+    }
+  }
 
+  // 9. Obsidian Vault / Architectural Alabaster Theme Switcher
+  function toggleAtmosphere() {
+    document.body.classList.toggle('light-mode');
+    const icon = document.getElementById('themeIcon');
+    icon.textContent = document.body.classList.contains('light-mode') ? '☾' : '✦';
+  }
   // 9. Obsidian Vault / Architectural Alabaster Theme Switcher
   function toggleAtmosphere() {
     document.body.classList.toggle('light-mode');
