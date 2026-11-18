@@ -317,14 +317,14 @@
     ::-webkit-scrollbar-thumb { background: #242731; border: 1px solid rgba(212,175,55,0.3); }
     ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
   </style></head><body class="titan-grid selection:bg-gold selection:text-obsidian"><!-- AMBIENT GOLD EMBER CANVAS --><canvas id="emberCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-60"></canvas><!-- =========================================================
-     <!-- =========================================================
+    <!-- =========================================================
      SECTION 1: STICKY GLASS COMMAND HEADER
      ========================================================= -->
 <header class="fixed w-full top-0 z-50 border-b border-white/10 backdrop-blur-md" style="background-color: rgba(7, 7, 9, 0.85);">
   <div class="container-x flex items-center justify-between py-4">
     
-    <!-- Brand Identity -->
-    <a href="#" class="flex items-center gap-3 group shrink-0">
+    <!-- Brand Identity (Locked to Left) -->
+    <a href="#" class="flex items-center gap-3 group shrink-0 mr-4 lg:mr-8">
       <div class="relative flex items-center justify-center">
         <img src="logo.png" alt="Deep Articulate Logo" class="h-8 md:h-9 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <!-- Fallback Monogram -->
@@ -336,34 +336,39 @@
       </div>
     </a>
 
-    <!-- Desktop Navigation (Fixed Spacing & Wrapping) -->
-    <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs font-mono uppercase tracking-wider text-silver/80">
-      <a href="#capabilities" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Capabilities</a>
-      <a href="#showcase" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Concept Work</a>
-      <a href="#performance" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Performance</a>
-      <a href="#systems" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Our Systems</a>
-      <a href="#protocol" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Our Process</a>
-      <a href="#acquisition" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Pricing</a>
-    </nav>
+    <!-- Right Side Container (Nav + Buttons) -->
+    <div class="flex items-center gap-4 xl:gap-6 ml-auto">
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-5 text-[10px] xl:text-xs font-mono uppercase tracking-wider text-silver/80">
+        <a href="#capabilities" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Capabilities</a>
+        <a href="#showcase" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Concept Work</a>
+        <a href="#performance" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Performance</a>
+        <a href="#systems" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Our Systems</a>
+        <a href="#protocol" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Our Process</a>
+        <a href="#acquisition" class="link-underline hover:text-gold transition-colors whitespace-nowrap">Pricing</a>
+      </nav>
 
-    <!-- Actions + Atmosphere Toggle + Mobile Hamburger -->
-    <div class="flex items-center gap-3 shrink-0">
-      <button onclick="toggleAtmosphere()" id="themeToggleBtn" title="Switch Vault / Blueprint Mode" class="w-9 h-9 rounded-sm border border-gold/30 bg-white/5 hover:border-gold flex items-center justify-center text-gold transition cursor-pointer">
-        <span id="themeIcon" class="text-sm">✦</span>
-      </button>
-      
-      <a href="#showcase" class="hidden md:inline-flex ghost-btn !py-2.5 !px-4 !text-[11px] whitespace-nowrap">View Work</a>
-      <a href="#initiate" class="hidden sm:inline-flex gold-btn font-mono !py-2.5 !px-4 text-xs whitespace-nowrap">Discuss a Project →</a>
-      
-      <!-- Mobile Menu Trigger -->
-      <button onclick="toggleMobileMenu()" class="lg:hidden w-9 h-9 flex items-center justify-center text-gold border border-gold/30 rounded-sm bg-white/5 hover:border-gold transition cursor-pointer">
-        <svg id="hamburgerIcon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-      </button>
+      <!-- Actions + Atmosphere Toggle + Mobile Hamburger -->
+      <div class="flex items-center gap-3 shrink-0 border-l lg:border-white/10 lg:pl-4 xl:pl-6">
+        <button onclick="toggleAtmosphere()" id="themeToggleBtn" title="Switch Vault / Blueprint Mode" class="w-9 h-9 rounded-sm border border-gold/30 bg-white/5 hover:border-gold flex items-center justify-center text-gold transition cursor-pointer">
+          <span id="themeIcon" class="text-sm">☀</span>
+        </button>
+        
+        <a href="#showcase" class="hidden xl:inline-flex ghost-btn !py-2.5 !px-4 !text-[11px] whitespace-nowrap">View Work</a>
+        <a href="#initiate" class="hidden sm:inline-flex gold-btn font-mono !py-2.5 !px-4 text-xs whitespace-nowrap">Discuss a Project →</a>
+        
+        <!-- Mobile Menu Trigger -->
+        <button onclick="toggleMobileMenu()" class="lg:hidden w-9 h-9 flex items-center justify-center text-gold border border-gold/30 rounded-sm bg-white/5 hover:border-gold transition cursor-pointer">
+          <svg id="hamburgerIcon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- Collapsible Mobile Glass Menu -->
-  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 backdrop-blur-2xl bg-obsidian/95 absolute w-full shadow-2xl origin-top transition-all">
+  <!-- Collapsible Mobile Glass Menu (Highly Transparent) -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 backdrop-blur-2xl bg-black/40 absolute w-full shadow-2xl origin-top transition-all">
     <nav class="flex flex-col p-5 gap-5">
       <a href="#capabilities" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">01</span> Capabilities</a>
       <a href="#showcase" onclick="toggleMobileMenu()" class="font-mono text-xs text-silver/80 uppercase tracking-widest hover:text-gold flex items-center gap-3"><span class="text-gold">02</span> Concept Work</a>
@@ -378,7 +383,6 @@
     </nav>
   </div>
 </header>
-
 <!-- =========================================================
      SECTION 2: SPLIT-SCREEN WORLD-BUILDING HERO (PRIORITY 1)
      ========================================================= -->
@@ -1630,13 +1634,7 @@
   function toggleAtmosphere() {
     document.body.classList.toggle('light-mode');
     const icon = document.getElementById('themeIcon');
-    icon.textContent = document.body.classList.contains('light-mode') ? '☾' : '✦';
-  }
-  // 9. Obsidian Vault / Architectural Alabaster Theme Switcher
-  function toggleAtmosphere() {
-    document.body.classList.toggle('light-mode');
-    const icon = document.getElementById('themeIcon');
-    icon.textContent = document.body.classList.contains('light-mode') ? '☾' : '✦';
+    icon.textContent = document.body.classList.contains('light-mode') ? '☾' : '☀';
   }
 
   // 10. Ambient Drifting Gold Ember Canvas
