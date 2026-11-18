@@ -199,21 +199,43 @@
     body.light-mode .glowing-pill-inner { background: var(--bg-secondary); }
     @keyframes border-spin { 100% { transform: rotate(360deg); } }
 
-    /* Light Mode Hard-Overrides */
+   /* Light Mode Hard-Overrides (Enhanced for Opacity & Gradients) */
     body.light-mode .text-white,
     body.light-mode .text-silver,
+    body.light-mode .text-silver\/60,
+    body.light-mode .text-silver\/65,
     body.light-mode .text-silver\/70,
     body.light-mode .text-silver\/75,
     body.light-mode .text-silver\/80,
     body.light-mode .text-silver\/85 {
       color: var(--text-primary) !important;
     }
+    
+    /* Force all charcoal/obsidian backgrounds (including opacity variants) to Alabaster */
     body.light-mode .bg-charcoal,
-    body.light-mode .bg-obsidian {
+    body.light-mode .bg-charcoal\/70,
+    body.light-mode .bg-charcoal\/80,
+    body.light-mode .bg-charcoal\/90,
+    body.light-mode .bg-obsidian,
+    body.light-mode .bg-obsidian\/85,
+    body.light-mode .bg-obsidian\/95 {
       background-color: var(--bg-secondary) !important;
     }
+
+    /* Override the dark Concept Vault gradients to a clean light aesthetic */
+    body.light-mode .bg-gradient-to-br {
+      background: linear-gradient(135deg, #ffffff, #EFECE6) !important;
+    }
+
+    /* Fix the inner transparent boxes (Nodes, Concept Metrics) */
     body.light-mode .bg-black\/40 {
-      background-color: rgba(0,0,0,0.05) !important;
+      background-color: rgba(255, 255, 255, 0.75) !important;
+      border-color: rgba(184, 150, 46, 0.3) !important;
+    }
+
+    /* Deepen the gold slightly in light mode for better reading contrast */
+    body.light-mode .text-gold {
+      color: #9C7D22 !important;
     }
 
     /* Buttons */
