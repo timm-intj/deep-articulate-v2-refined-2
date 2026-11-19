@@ -369,6 +369,38 @@
     body.light-mode .text-emerald {
       color: #C86D51 !important;
     }
+    /* 7. FINAL LIGHT-MODE POLISH (Pill Beam, Node Headings, Hero Bold) */
+    
+    /* Make the spinning gold border on the pill unmistakable */
+    body.light-mode .glowing-pill-wrapper {
+      padding: 2.5px !important;
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.35) !important;
+    }
+    body.light-mode .glowing-pill-wrapper::before {
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg 220deg,
+        #D4AF37 260deg,
+        #F3E5AB 300deg,
+        #D4AF37 340deg,
+        transparent 360deg
+      ) !important;
+      opacity: 1 !important;
+    }
+    /* Fix the white Node headings (1. Targeted Entry, 2. Action & Qualification, etc.) */
+    body.light-mode h4,
+    body.light-mode h5 {
+      color: #111827 !important;
+    }
+    body.light-mode #showcase .bg-gradient-to-br h4 {
+      color: #FFFFFF !important;
+    }
+
+    /* Turn the Hero white bold text ("home-service contractors...") into Gold */
+    body.light-mode p strong,
+    body.light-mode p b {
+      color: #B8962E !important;
+    }
     /* Buttons */
     .gold-btn {
       background: linear-gradient(180deg, #E5C158 0%, #D4AF37 50%, #B8962E 100%);
