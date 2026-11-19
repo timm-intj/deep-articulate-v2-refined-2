@@ -199,104 +199,175 @@
     body.light-mode .glowing-pill-inner { background: var(--bg-secondary); }
     @keyframes border-spin { 100% { transform: rotate(360deg); } }
 
-  /* =========================================================
-       LIGHT MODE: MIDNIGHT NAVY & CRISP WHITE (100% CSS OVERRIDE)
+ /* =========================================================
+       LIGHT MODE: MIDNIGHT NAVY & CRISP WHITE (REFINED)
        ========================================================= */
 
-    /* 1. GLOBAL LIGHT BASE (Crisp Architectural White, No Ash) */
+    /* 1. GLOBAL LIGHT BASE (Crisp Architectural White) */
     body.light-mode {
-      background-color: #F8F9FA !important; 
+      background-color: #F8F9FA !important;
+      color: #111827 !important;
     }
 
-    /* Force all text to Deep Charcoal globally (outside of Navy sections) */
-    body.light-mode h1, body.light-mode h2, body.light-mode h3, 
+    body.light-mode h1, body.light-mode h2, body.light-mode h3,
     body.light-mode p, body.light-mode li, body.light-mode span,
-    body.light-mode div {
-      color: #111827; 
+    body.light-mode div, body.light-mode label, body.light-mode input,
+    body.light-mode textarea, body.light-mode button {
+      color: #111827;
     }
 
-    /* Flip global dark card backgrounds to pure white */
+   /* Default cards to crisp white with visible metallic gold borders */
     body.light-mode [class*="bg-charcoal"],
-    body.light-mode [class*="bg-obsidian"] {
+    body.light-mode [class*="bg-obsidian"],
+    body.light-mode .aura-card,
+    body.light-mode .glowing-pill-inner {
       background-color: #FFFFFF !important;
-      border-color: rgba(0, 0, 0, 0.08) !important;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      border-color: rgba(184, 150, 46, 0.45) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     }
 
-    /* 1b. FIX THE GRID & SPARKLES */
-    /* Invert the grid lines so they show up on the white background */
+    /* 1b. GRID LINES, SPARKLES & STRONGER MOUSE AURA */
     body.light-mode.titan-grid {
-      background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px) !important;
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px) !important;
     }
-    /* Force the gold particles to pop against white */
     body.light-mode #emberCanvas {
       opacity: 1 !important;
-      filter: drop-shadow(0px 1px 2px rgba(156, 125, 34, 0.6)) brightness(0.85) !important;
+      filter: drop-shadow(0px 1px 2px rgba(156, 125, 34, 0.65)) brightness(0.85) !important;
+    }
+   /* Pure luminous gold mouse aura on light cards */
+    body.light-mode .aura-card::before {
+      background: radial-gradient(
+        550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(234, 197, 79, 0.32),
+        rgba(212, 175, 55, 0.10) 45%,
+        transparent 70%
+      ) !important;
+      opacity: 1 !important;
     }
 
-    /* 2. PROTECT THE COMMAND HEADER (Keep it Dark Glass) */
+    /* 2. PROTECT THE COMMAND HEADER (Dark Glass) */
     body.light-mode header *,
     body.light-mode header a {
-      color: #ffffff !important;
+      color: #FFFFFF !important;
     }
     body.light-mode header .text-gold {
       color: #D4AF37 !important;
     }
     body.light-mode header .bg-black\/90 {
-      background-color: rgba(7, 7, 9, 0.9) !important;
+      background-color: rgba(7, 7, 9, 0.92) !important;
     }
 
-    /* 3. ALTERNATING ZEBRA SECTIONS (Midnight Navy) */
-    /* Target: Capabilities (Sec 1), Performance (Sec 3), Pricing (Sec 6) */
+    /* 3. MIDNIGHT NAVY SECTIONS (Full-Width) */
     body.light-mode #capabilities,
     body.light-mode #performance,
     body.light-mode #acquisition {
-      background-color: #0A1128 !important; /* Midnight Navy */
+      background-color: #0A1128 !important;
     }
 
-    /* STRICT OVERRIDE: Force ALL text inside Navy sections to White */
-    body.light-mode #capabilities h2, body.light-mode #capabilities p, body.light-mode #capabilities span, body.light-mode #capabilities div, body.light-mode #capabilities li,
-    body.light-mode #performance h2, body.light-mode #performance p, body.light-mode #performance span, body.light-mode #performance div, body.light-mode #performance li,
-    body.light-mode #acquisition h2, body.light-mode #acquisition p, body.light-mode #acquisition span, body.light-mode #acquisition div, body.light-mode #acquisition li {
-      color: #ffffff !important;
+    /* Force Section 3 (#performance) to stretch full edge-to-edge */
+    body.light-mode #performance {
+      margin-inline: calc(50% - 50vw) !important;
+      padding-inline: calc(50vw - 50%) !important;
+      padding-top: 5rem !important;
+      padding-bottom: 5rem !important;
     }
 
-    /* Inner UI cards inside Navy sections (Slightly lighter Navy for contrast) */
-    body.light-mode #capabilities [class*="bg-charcoal"],
-    body.light-mode #performance [class*="bg-charcoal"],
-    body.light-mode #acquisition [class*="bg-charcoal"] {
-      background-color: #111A3A !important; 
-      border-color: rgba(255, 255, 255, 0.1) !important;
-      box-shadow: none;
+    /* Text directly on Midnight Navy background = Crisp White */
+    body.light-mode #capabilities > div h2,
+    body.light-mode #capabilities > div > div > p,
+    body.light-mode #performance h2,
+    body.light-mode #performance p,
+    body.light-mode #performance span,
+    body.light-mode #acquisition > div h2,
+    body.light-mode #acquisition > div > div > p {
+      color: #FFFFFF !important;
     }
 
-    /* 4. PROTECT ACCENTS GLOBALLY */
-    /* Ensure Gold text stays Gold everywhere */
-    body.light-mode .text-gold, 
-    body.light-mode #capabilities .text-gold, 
-    body.light-mode #performance .text-gold, 
-    body.light-mode #acquisition .text-gold {
-      color: #B8962E !important; /* Slightly deeper gold for legibility on white */
+    /* Text INSIDE white cards within Navy sections = Dark Charcoal (Legible!) */
+    body.light-mode #capabilities .aura-card *,
+    body.light-mode #capabilities .glowing-pill-inner *,
+    body.light-mode #performance .aura-card *,
+    body.light-mode #acquisition .aura-card *,
+    body.light-mode #acquisition .glowing-pill-inner *,
+    body.light-mode #acquisition details * {
+      color: #111827 !important;
     }
-    /* Convert Emerald text to Terracotta in Light Mode */
+
+    /* Speed Benchmark Toggle Buttons inside #performance */
+    body.light-mode #performance .aura-card button {
+      color: #111827 !important;
+      border-color: rgba(17, 24, 39, 0.2) !important;
+    }
+
+    /* 4. CONCEPT BLUEPRINTS (#showcase) — KEEP ORIGINAL DARK MOCKUPS */
+    body.light-mode #showcase .bg-gradient-to-br {
+      /* Preserve original dark-mode gradient & force crisp white text inside */
+      color: #FFFFFF !important;
+    }
+    body.light-mode #showcase .bg-gradient-to-br h3,
+    body.light-mode #showcase .bg-gradient-to-br h4,
+    body.light-mode #showcase .bg-gradient-to-br p,
+    body.light-mode #showcase .bg-gradient-to-br span,
+    body.light-mode #showcase .bg-gradient-to-br div {
+      color: #FFFFFF !important;
+    }
+    body.light-mode #showcase .bg-gradient-to-br .bg-black\/40 {
+      background-color: rgba(0, 0, 0, 0.45) !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Fix Blueprint Switcher Tabs (01, 02, 03) so inactive tabs stay visible */
+    body.light-mode #showcase button {
+      color: #111827 !important;
+      border: 1px solid rgba(17, 24, 39, 0.2) !important;
+      background-color: #FFFFFF !important;
+    }
+    body.light-mode #showcase button.bg-gold,
+    body.light-mode #showcase button[class*="bg-gold"] {
+      background-color: #D4AF37 !important;
+      color: #070709 !important;
+      border-color: #D4AF37 !important;
+    }
+
+   /* 5. INTAKE FORM & FOOTER (#initiate) — FIX FAINT TEXT & BUTTONS */
+    body.light-mode #initiate,
+    body.light-mode footer {
+      background-color: #FFFFFF !important;
+    }
+    body.light-mode #initiate *,
+    body.light-mode footer * {
+      color: #111827 !important;
+      opacity: 1 !important;
+    }
+    body.light-mode #initiate label {
+      color: #374151 !important;
+      font-weight: 600;
+    }
+    body.light-mode #initiate input,
+    body.light-mode #initiate textarea,
+    body.light-mode #initiate button:not(.gold-btn) {
+      background-color: #F8F9FA !important;
+      border: 1px solid rgba(184, 150, 46, 0.45) !important;
+      color: #111827 !important;
+    }
+
+    /* 6. PROTECT GOLD, BUTTONS & ACCENTS GLOBALLY */
+    body.light-mode .text-gold,
+    body.light-mode .eyebrow,
+    body.light-mode #capabilities .text-gold,
+    body.light-mode #performance .text-gold,
+    body.light-mode #acquisition .text-gold,
+    body.light-mode #initiate .text-gold {
+      color: #B8962E !important;
+    }
+    body.light-mode .gold-btn,
+    body.light-mode .gold-btn * {
+      color: #070709 !important;
+    }
     body.light-mode .text-emerald {
-      color: #C86D51 !important; 
-    }
-
-    /* 5. CONCEPT VAULT GRADIENTS & PILLS */
-    body.light-mode .bg-gradient-to-br {
-      background: linear-gradient(135deg, #ffffff, #F0F2F5) !important;
-    }
-    body.light-mode .bg-black\/40 {
-      background-color: rgba(0, 0, 0, 0.04) !important;
-      border-color: rgba(0, 0, 0, 0.08) !important;
-    }
-    
-    /* 6. INTAKE FORM / FOOTER */
-    body.light-mode #initiate {
-      background-color: #ffffff !important;
+      color: #C86D51 !important;
     }
     /* Buttons */
     .gold-btn {
