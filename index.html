@@ -401,6 +401,18 @@
     body.light-mode p b {
       color: #B8962E !important;
     }
+    /* Fix faint links (like "Or ask a quick question first") */
+    body.light-mode a:not(.gold-btn):not(.ghost-btn) {
+      color: #111827 !important;
+      border-color: rgba(17, 24, 39, 0.35) !important;
+    }
+    body.light-mode a:not(.gold-btn):not(.ghost-btn):hover {
+      color: #B8962E !important;
+      border-color: #B8962E !important;
+    }
+    body.light-mode header a:not(.gold-btn) {
+      color: #FFFFFF !important;
+    }
     /* Buttons */
     .gold-btn {
       background: linear-gradient(180deg, #E5C158 0%, #D4AF37 50%, #B8962E 100%);
